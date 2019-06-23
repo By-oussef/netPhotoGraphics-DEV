@@ -1429,21 +1429,21 @@ if (!empty($atom_structure['sample_description_table'][$i]['width']) && !empty($
 				// mdta keys \005 mdtacom.apple.quicktime.make (mdtacom.apple.quicktime.creationdate ,mdtacom.apple.quicktime.location.ISO6709 $mdtacom.apple.quicktime.software !mdtacom.apple.quicktime.model ilst \01D \001 \015data \001DE\010Apple 0 \002 (data \001DE\0102011-05-11T17:54:04+0200 2 \003 *data \001DE\010+52.4936+013.3897+040.247/ \01D \004 \015data \001DE\0104.3.1 \005 \018data \001DE\010iPhone 4
 				// http://www.geocities.com/xhelmboyx/quicktime/formats/qti-layout.txt
 
-				$atom_structure['version']   =          getid3_lib::BigEndian2Int(substr($atom_data, 0, 1));
-				$atom_structure['flags_raw'] =          getid3_lib::BigEndian2Int(substr($atom_data, 1, 3));
+				$atom_structure['version']   = getid3_lib::BigEndian2Int(substr($atom_data, 0, 1));
+				$atom_structure['flags_raw'] = getid3_lib::BigEndian2Int(substr($atom_data, 1, 3));
 				$atom_structure['subatoms']  = $this->QuicktimeParseContainerAtom(substr($atom_data, 4), $baseoffset + 8, $atomHierarchy, $ParseAllPossibleAtoms);
 				//$atom_structure['subatoms']  = $this->QuicktimeParseContainerAtom($atom_data, $baseoffset + 8, $atomHierarchy, $ParseAllPossibleAtoms);
 				break;
 
 			case 'data': // metaDATA atom
 				// seems to be 2 bytes language code (ASCII), 2 bytes unknown (set to 0x10B5 in sample I have), remainder is useful data
-				$atom_structure['language'] =                           substr($atom_data, 4 + 0, 2);
+				$atom_structure['language'] = substr($atom_data, 4 + 0, 2);
 				$atom_structure['unknown']  = getid3_lib::BigEndian2Int(substr($atom_data, 4 + 2, 2));
-				$atom_structure['data']     =                           substr($atom_data, 4 + 4);
+				$atom_structure['data']     = substr($atom_data, 4 + 4);
 				break;
 
 			default:
-				$info['warning'][] = 'Unknown QuickTime atom type: "'.preg_replace('#[^a-zA-Z0-9 _\\-]#', '?', $atomname).'" ('.trim(getid3_lib::PrintHexBytes($atomname)).') at offset '.$baseoffset;
+				$info['warning'][] = 'Unknown QuickTime atom type: "' . preg_replace('#[^a-zA-Z0-9 _\\-]#', '?', $atomname) . '" (' . trim(getid3_lib::PrintHexBytes($atomname)) . ') at offset ' . $baseoffset;
 				$atom_structure['data'] = $atom_data;
 				break;
 		}

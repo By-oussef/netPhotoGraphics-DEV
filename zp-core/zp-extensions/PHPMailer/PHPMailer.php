@@ -3477,7 +3477,7 @@ class PHPMailer
 	{
 		$this->RecipientsQueue = array_filter(
 			$this->RecipientsQueue,
-			function ($params) use ($kind) {
+			function($params) use ($kind) {
 				return $params[0] != $kind;
 			}
 		);
@@ -4199,8 +4199,7 @@ class PHPMailer
 			return '';
 		}
 		$privKeyStr = !empty($this->DKIM_private_string) ?
-			$this->DKIM_private_string :
-			file_get_contents($this->DKIM_private);
+			$this->DKIM_private_string : file_get_contents($this->DKIM_private);
 		if ('' != $this->DKIM_passphrase) {
 			$privKey = openssl_pkey_get_private($privKeyStr, $this->DKIM_passphrase);
 		} else {

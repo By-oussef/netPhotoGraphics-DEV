@@ -191,7 +191,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 
 		$decoded = $this->_bd_curlExec($curl, true, array('Content-Length: ' . strlen($fields)));
 
-		return (object)array(
+		return (object) array(
 			'expires' => time() + $decoded->expires_in - 30,
 			'data' => $decoded,
 		);
@@ -244,7 +244,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 				throw new \Exception(elFinder::ERROR_REAUTH_REQUIRE);
 			}
 
-			$token = (object)array(
+			$token = (object) array(
 				'expires' => time() + $decoded->expires_in - 30,
 				'data' => $decoded,
 			);
@@ -479,7 +479,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 			$stat['size'] = 0;
 			$stat['dirs'] = -1;
 		} else {
-			$stat['size'] = (int)$raw->size;
+			$stat['size'] = (int) $raw->size;
 			if (!empty($raw->shared_link->url) && $raw->shared_link->access == 'open') {
 				if ($url = $this->getSharedWebContentLink($raw)) {
 					$stat['url'] = $url;
@@ -655,7 +655,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 						. '?cmd=netmount&protocol=box&host=box.com&user=init&pass=return&node=' . $options['id'] . $cdata;
 
 					try {
-						$this->session->set('BoxTokens', (object)array('token' => null));
+						$this->session->set('BoxTokens', (object) array('token' => null));
 
 						$url = self::AUTH_URL . '?' . http_build_query(array('response_type' => 'code', 'client_id' => $options['client_id'], 'redirect_uri' => elFinder::getConnectorUrl() . '?cmd=netmount&protocol=box&host=1'));
 
@@ -689,7 +689,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 					$folders = ['root' => 'My Box'] + $folders;
 					$folders = json_encode($folders);
 
-					$expires = empty($this->token->data->refresh_token) ? (int)$this->token->expires : 0;
+					$expires = empty($this->token->data->refresh_token) ? (int) $this->token->expires : 0;
 					$json = '{"protocol": "box", "mode": "done", "folders": ' . $folders . ', "expires": ' . $expires . '}';
 					$html = 'Box.com';
 					$html .= '<script>
@@ -800,8 +800,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 
 		if (empty($this->options['alias'])) {
 			list(, $itemId) = $this->_bd_splitPath($this->options['path']);
-			$this->options['alias'] = ($this->options['path'] === '/') ? $this->options['root'] :
-				$this->_bd_query($itemId, $fetch_self = true)->name . '@Box.com';
+			$this->options['alias'] = ($this->options['path'] === '/') ? $this->options['root'] : $this->_bd_query($itemId, $fetch_self = true)->name . '@Box.com';
 		}
 
 		$this->rootName = $this->options['alias'];
@@ -917,7 +916,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 		$hasDir = false;
 
 		if ($path == '/') {
-			$items = $this->_bd_query('0', $fetch_self = true);   // get root directory with folder & files
+			$items = $this->_bd_query('0', $fetch_self = true); // get root directory with folder & files
 			$itemId = $items->id;
 		} else {
 			list(, $itemId) = $this->_bd_splitPath($path);
@@ -1194,7 +1193,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 	 **/
 	protected function _dirname($path)
 	{
-		list(, , $dirname) = $this->_bd_splitPath($path);
+		list(,, $dirname) = $this->_bd_splitPath($path);
 
 		return $dirname;
 	}
@@ -1536,7 +1535,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 			$srcItem = $this->_bd_getRawItem($source);
 
 			$properties = array('name' => $name, 'parent' => array('id' => $parentId));
-			$data = (object)$properties;
+			$data = (object) $properties;
 
 			$type = ($srcItem->type === 'folder') ? 'folders' : 'files';
 			$url = self::API_URL . '/' . $type . '/' . $srcId . '/copy';
@@ -1590,7 +1589,7 @@ class elFinderVolumeBox extends elFinderVolumeDriver
 
 			$type = ($srcItem->type === 'folder') ? 'folders' : 'files';
 			$url = self::API_URL . '/' . $type . '/' . $itemId;
-			$data = (object)$properties;
+			$data = (object) $properties;
 
 			$curl = $this->_bd_prepareCurl(array(
 				CURLOPT_URL => $url,

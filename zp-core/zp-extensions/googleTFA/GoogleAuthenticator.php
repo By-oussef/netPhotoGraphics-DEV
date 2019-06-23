@@ -59,7 +59,7 @@ class GoogleAuthenticator
 		// There definitely will be a better way of doing this, but this is a quick bugfix
 		//
 		// If someone has any better suggestions on how to achieve this, please send in a PR! :P
-		$key = md5(crypt($secret."|".$code, md5($code)));
+		$key = md5(crypt($secret . "|" . $code, md5($code)));
 
 		// If it existed, then we want this function to return false
 		if ($this->cachePool->hasItem($key)) {

@@ -19,7 +19,9 @@ npgFilters::apply('theme_file_top');
 			<div class="content border colour">
 				<div class="contactbox" <?php echo $commentStyle; ?>>
 					<?php 
-					if (npg_loggedin()) setOption('contactform_captcha', false, false);
+					if (npg_loggedin()) {
+						setOption('contactform_captcha', false, false);
+					}
 					printContactForm(); 
 					?>
 				</div>

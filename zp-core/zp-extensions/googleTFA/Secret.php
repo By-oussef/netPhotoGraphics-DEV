@@ -18,7 +18,7 @@ class Secret
 	public function __construct($issuer, $accountName, $secretKey)
 	{
 		// As per spec sheet
-		if (strpos($issuer.$accountName, ":") !== false) {
+		if (strpos($issuer . $accountName, ":") !== false) {
 			throw new \InvalidArgumentException("Neither the 'Issuer' parameter nor the 'AccountName' parameter may contain a colon");
 		}
 
@@ -32,7 +32,7 @@ class Secret
 	 */
 	public function getUri()
 	{
-		return "otpauth://totp/".rawurlencode($this->getLabel())."?secret=".$this->getSecretKey()."&issuer=".rawurlencode($this->getIssuer());
+		return "otpauth://totp/" . rawurlencode($this->getLabel()) . "?secret=" . $this->getSecretKey() . "&issuer=" . rawurlencode($this->getIssuer());
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Secret
 	 */
 	public function getLabel()
 	{
-		return $this->issuer.":".$this->accountName;
+		return $this->issuer . ":" . $this->accountName;
 	}
 
 	/**

@@ -184,7 +184,7 @@ class elFinderVolumeDropbox2 extends elFinderVolumeDriver
 			$stat['ts'] = 0;
 			$stat['dirs'] = -1;
 		} else {
-			$stat['size'] = isset($data['size']) ? (int)$data['size'] : 0;
+			$stat['size'] = isset($data['size']) ? (int) $data['size'] : 0;
 			if (isset($data['server_modified'])) {
 				$stat['ts'] = strtotime($data['server_modified']);
 			} elseif (isset($data['client_modified'])) {

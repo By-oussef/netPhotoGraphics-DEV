@@ -174,8 +174,9 @@ function locale_emulation() {
  */
 function _check_locale_and_function($function = false) {
 	global $EMULATEGETTEXT;
-	if ($function and !function_exists($function))
-		return false;
+	if ($function and !function_exists($function)) {
+			return false;
+	}
 	return !$EMULATEGETTEXT;
 }
 

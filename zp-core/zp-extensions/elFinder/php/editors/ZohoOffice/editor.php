@@ -167,7 +167,7 @@ class elFinderEditorZohoOffice extends elFinderEditor
 		/** @var elFinderVolumeDriver $volume */
 		if ($volume = $this->elfinder->getVolume($hash)) {
 			if ($file = $volume->file($hash)) {
-				$res = (bool)$file['write'];
+				$res = (bool) $file['write'];
 			}
 		}
 		return array('cansave' => $res);

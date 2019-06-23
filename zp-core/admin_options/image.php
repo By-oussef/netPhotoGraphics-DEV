@@ -500,9 +500,10 @@ function getOptionContent() {
 											<option value="" <?php if (empty($current)) {
 	echo ' selected="selected"' ?> style="background-color:LightGray">
 												<?php
-												if ($plugin == 'Image')
-													echo gettext('none');
-} else {
+												if ($plugin == 'Image') {
+																									echo gettext('none');
+												}
+												} else {
 																									echo gettext('image thumbnail')
 													?>
 											</option>

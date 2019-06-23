@@ -182,7 +182,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 			throw new \Exception('json_decode() failed');
 		}
 
-		return (object)array(
+		return (object) array(
 			'expires' => time() + $decoded->expires_in - 30,
 			'data' => $decoded,
 		);
@@ -250,7 +250,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 				throw new \Exception(elFinder::ERROR_REAUTH_REQUIRE);
 			}
 
-			$token = (object)array(
+			$token = (object) array(
 				'expires' => time() + $decoded->expires_in - 30,
 				'data' => $decoded,
 			);
@@ -341,7 +341,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 			if (isset($result->value)) {
 				$res = $result->value;
 				unset($result->value);
-				$result = (array)$result;
+				$result = (array) $result;
 				if (!empty($result['@odata.nextLink'])) {
 					$nextRes = $this->_od_createCurl($result['@odata.nextLink'], false);
 					if (is_array($nextRes)) {
@@ -434,7 +434,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 			if (isset($raw->file->mimeType)) {
 				$stat['mime'] = $raw->file->mimeType;
 			}
-			$stat['size'] = (int)$raw->size;
+			$stat['size'] = (int) $raw->size;
 			if (!$this->disabledGetUrl) {
 				$stat['url'] = '1';
 			}
@@ -748,7 +748,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 						. '?cmd=netmount&protocol=onedrive&host=onedrive.com&user=init&pass=return&node=' . $options['id'] . $cdata;
 
 					try {
-						$this->session->set('OneDriveTokens', (object)array('token' => null));
+						$this->session->set('OneDriveTokens', (object) array('token' => null));
 
 						$offline = '';
 						// Gets a log in URL with sufficient privileges from the OneDrive API
@@ -791,7 +791,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 					$folders = ['root' => 'My OneDrive'] + $folders;
 					$folders = json_encode($folders);
 
-					$expires = empty($this->token->data->refresh_token) ? (int)$this->token->expires : 0;
+					$expires = empty($this->token->data->refresh_token) ? (int) $this->token->expires : 0;
 					$json = '{"protocol": "onedrive", "mode": "done", "folders": ' . $folders . ', "expires": ' . $expires . '}';
 					$html = 'OneDrive.com';
 					$html .= '<script>
@@ -882,7 +882,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 			return $this->setError($e->getMessage());
 		}
 
-		$this->expires = empty($this->token->data->refresh_token) ? (int)$this->token->expires : 0;
+		$this->expires = empty($this->token->data->refresh_token) ? (int) $this->token->expires : 0;
 
 		if (empty($options['netkey'])) {
 			// make net mount key
@@ -902,8 +902,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 		$this->options['root'] == '' ? $this->options['root'] = 'OneDrive.com' : $this->options['root'];
 
 		if (empty($this->options['alias'])) {
-			$this->options['alias'] = ($this->options['path'] === '/') ? $this->options['root'] :
-				$this->_od_query(basename($this->options['path']), $fetch_self = true)->name . '@OneDrive';
+			$this->options['alias'] = ($this->options['path'] === '/') ? $this->options['root'] : $this->_od_query(basename($this->options['path']), $fetch_self = true)->name . '@OneDrive';
 		}
 
 		$this->rootName = $this->options['alias'];
@@ -1109,7 +1108,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 	{
 		if ($this->options['useApiThumbnail']) {
 			if (func_num_args() > 2) {
-				list(, , $count) = func_get_args();
+				list(,, $count) = func_get_args();
 			} else {
 				$count = 0;
 			}
@@ -1224,7 +1223,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 			list(, $itemId) = $this->_od_splitPath($path);
 			try {
 				$url = self::API_URL . $itemId . '/createLink';
-				$data = (object)array(
+				$data = (object) array(
 					'type' => 'embed',
 					'scope' => 'anonymous',
 				);
@@ -1263,7 +1262,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 	 **/
 	protected function _dirname($path)
 	{
-		list(, , $dirname) = $this->_od_splitPath($path);
+		list(,, $dirname) = $this->_od_splitPath($path);
 
 		return $dirname;
 	}
@@ -1418,7 +1417,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 	{
 		list(, $itemId) = $this->_od_splitPath($path);
 
-		return (bool)$this->_od_query($itemId, false, false, array(
+		return (bool) $this->_od_query($itemId, false, false, array(
 			'query' => array(
 				'top' => 1,
 				'select' => 'id',
@@ -1474,7 +1473,7 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 					$srcSize = explode('x', $ret['dim']);
 					if (min(($tmbSize / $srcSize[0]), ($tmbSize / $srcSize[1])) < 1) {
 						if (!empty($raw->thumbnails)) {
-							$tmbArr = (array)$raw->thumbnails[0];
+							$tmbArr = (array) $raw->thumbnails[0];
 							if (!empty($tmbArr[$tmb]->url)) {
 								$ret['url'] = $tmbArr[$tmb]->url;
 							}
@@ -1576,11 +1575,11 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 
 		try {
 			$properties = array(
-				'name' => (string)$name,
-				'folder' => (object)array(),
+				'name' => (string) $name,
+				'folder' => (object) array(),
 			);
 
-			$data = (object)$properties;
+			$data = (object) $properties;
 
 			$url = self::API_URL . $parentId . '/children';
 
@@ -1652,14 +1651,14 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 			$url = self::API_URL . $itemId . '/copy';
 
 			$properties = array(
-				'name' => (string)$name,
+				'name' => (string) $name,
 			);
 			if ($parentId === 'root') {
-				$properties['parentReference'] = (object)array('path' => '/drive/root:');
+				$properties['parentReference'] = (object) array('path' => '/drive/root:');
 			} else {
-				$properties['parentReference'] = (object)array('id' => (string)$parentId);
+				$properties['parentReference'] = (object) array('id' => (string) $parentId);
 			}
-			$data = (object)$properties;
+			$data = (object) $properties;
 			$curl = $this->_od_prepareCurl($url);
 			curl_setopt_array($curl, array(
 				CURLOPT_POST => true,
@@ -1732,14 +1731,14 @@ class elFinderVolumeOneDrive extends elFinderVolumeDriver
 			list($sourceParentId, $itemId, $srcParent) = $this->_od_splitPath($source);
 
 			$properties = array(
-				'name' => (string)$name,
+				'name' => (string) $name,
 			);
 			if ($targetParentId !== $sourceParentId) {
-				$properties['parentReference'] = (object)array('id' => (string)$targetParentId);
+				$properties['parentReference'] = (object) array('id' => (string) $targetParentId);
 			}
 
 			$url = self::API_URL . $itemId;
-			$data = (object)$properties;
+			$data = (object) $properties;
 
 			$curl = $this->_od_prepareCurl($url);
 

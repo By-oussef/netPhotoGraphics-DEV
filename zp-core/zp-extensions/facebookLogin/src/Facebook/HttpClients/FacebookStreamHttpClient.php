@@ -143,7 +143,7 @@ class FacebookStreamHttpClient implements FacebookHttpable {
   public function compileHeader()
   {
 	$header = [];
-	foreach($this->requestHeaders as $k => $v) {
+	foreach ($this->requestHeaders as $k => $v) {
 	  $header[] = $k . ': ' . $v;
 	}
 

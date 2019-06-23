@@ -64,9 +64,9 @@ class elFinderPluginNormalizer extends elFinderPlugin
 	public function __construct($opts)
 	{
 		$defaults = array(
-			'enable' => true,  // For control by volume driver
-			'nfc' => true,  // Canonical Decomposition followed by Canonical Composition
-			'nfkc' => true,  // Compatibility Decomposition followed by Canonical
+			'enable' => true, // For control by volume driver
+			'nfc' => true, // Canonical Decomposition followed by Canonical Composition
+			'nfkc' => true, // Compatibility Decomposition followed by Canonical
 			'umlauts' => false, // Convert umlauts with their closest 7 bit ascii equivalent
 			'lowercase' => false, // Make chars lowercase
 			'convmap' => array()// Convert map ('FROM' => 'TO') array
@@ -163,20 +163,24 @@ class elFinderPluginNormalizer extends elFinderPlugin
 	{
 		if ($opts['nfc'] || $opts['nfkc']) {
 			if (class_exists('Normalizer', false)) {
-				if ($opts['nfc'] && !Normalizer::isNormalized($str, Normalizer::FORM_C))
-					$str = Normalizer::normalize($str, Normalizer::FORM_C);
-				if ($opts['nfkc'] && !Normalizer::isNormalized($str, Normalizer::FORM_KC))
-					$str = Normalizer::normalize($str, Normalizer::FORM_KC);
+				if ($opts['nfc'] && !Normalizer::isNormalized($str, Normalizer::FORM_C)) {
+									$str = Normalizer::normalize($str, Normalizer::FORM_C);
+				}
+				if ($opts['nfkc'] && !Normalizer::isNormalized($str, Normalizer::FORM_KC)) {
+									$str = Normalizer::normalize($str, Normalizer::FORM_KC);
+				}
 			} else {
 				if (!class_exists('I18N_UnicodeNormalizer', false)) {
 					include_once 'I18N/UnicodeNormalizer.php';
 				}
 				if (class_exists('I18N_UnicodeNormalizer', false)) {
 					$normalizer = new I18N_UnicodeNormalizer();
-					if ($opts['nfc'])
-						$str = $normalizer->normalize($str, 'NFC');
-					if ($opts['nfkc'])
-						$str = $normalizer->normalize($str, 'NFKC');
+					if ($opts['nfc']) {
+											$str = $normalizer->normalize($str, 'NFC');
+					}
+					if ($opts['nfkc']) {
+											$str = $normalizer->normalize($str, 'NFKC');
+					}
 				}
 			}
 		}

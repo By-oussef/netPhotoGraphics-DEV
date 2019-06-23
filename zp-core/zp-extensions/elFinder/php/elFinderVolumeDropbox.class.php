@@ -175,40 +175,40 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 						$this->dropbox = new Dropbox_API($this->oauth, $this->options['root']);
 						$this->dropbox->getAccountInfo();
 						$script = '<script>
-							$("#'.$options['id'].'").elfinder("instance").trigger("netmount", {protocol: "dropbox", mode: "done"});
+							$("#'.$options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "dropbox", mode: "done"});
 						</script>';
 						$html = $script;
 					} catch (Dropbox_Exception $e) {
 						$this->session->remove('DropboxTokens');
 					}
 				}
-				if (! $html) {
+				if (!$html) {
 					// get customdata
 					$cdata = '';
 					$innerKeys = array('cmd', 'host', 'options', 'pass', 'protocol', 'user');
-					$this->ARGS = $_SERVER['REQUEST_METHOD'] === 'POST'? $_POST : $_GET;
-					foreach($this->ARGS as $k => $v) {
-						if (! in_array($k, $innerKeys)) {
+					$this->ARGS = $_SERVER['REQUEST_METHOD'] === 'POST' ? $_POST : $_GET;
+					foreach ($this->ARGS as $k => $v) {
+						if (!in_array($k, $innerKeys)) {
 							$cdata .= '&' . $k . '=' . rawurlencode($v);
 						}
 					}
-					if (strpos($options['url'], 'http') !== 0 ) {
+					if (strpos($options['url'], 'http') !== 0) {
 						$options['url'] = elFinder::getConnectorUrl();
 					}
-					$callback  = $options['url']
-							   . '?cmd=netmount&protocol=dropbox&host=dropbox.com&user=init&pass=return&node='.$options['id'].$cdata;
+					$callback = $options['url']
+							   . '?cmd=netmount&protocol=dropbox&host=dropbox.com&user=init&pass=return&node=' . $options['id'] . $cdata;
 					
 					try {
 						$tokens = $this->oauth->getRequestToken();
-						$url= $this->oauth->getAuthorizeUrl(rawurlencode($callback));
+						$url = $this->oauth->getAuthorizeUrl(rawurlencode($callback));
 					} catch (Dropbox_Exception $e) {
 						return array('exit' => true, 'body' => '{msg:errAccess}');
 					}
 					
 					$this->session->set('DropboxAuthTokens', $tokens);
-					$html = '<input id="elf-volumedriver-dropbox-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button" onclick="window.open(\''.$url.'\')">';
+					$html = '<input id="elf-volumedriver-dropbox-host-btn" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" value="{msg:btnApprove}" type="button" onclick="window.open(\'' . $url . '\')">';
 					$html .= '<script>
-						$("#'.$options['id'].'").elfinder("instance").trigger("netmount", {protocol: "dropbox", mode: "makebtn"});
+						$("#'.$options['id'] . '").elfinder("instance").trigger("netmount", {protocol: "dropbox", mode: "makebtn"});
 					</script>';
 				}
 				return array('exit' => true, 'body' => $html);
@@ -622,20 +622,19 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 	protected function parseRaw($raw) {
 		$stat = array();
 
-		$stat['rev']   = isset($raw['rev'])? $raw['rev'] : 'root';
+		$stat['rev']   = isset($raw['rev']) ? $raw['rev'] : 'root';
 		$stat['name']  = $this->_basename($raw['path']);
-		$stat['mime']  = $raw['is_dir']? 'directory' : $raw['mime_type'];
+		$stat['mime']  = $raw['is_dir'] ? 'directory' : $raw['mime_type'];
 		$stat['size']  = $stat['mime'] == 'directory' ? 0 : $raw['bytes'];
-		$stat['ts']    = isset($raw['client_mtime'])? strtotime($raw['client_mtime']) :
-						(isset($raw['modified'])? strtotime($raw['modified']) : $_SERVER['REQUEST_TIME']);
+		$stat['ts']    = isset($raw['client_mtime']) ? strtotime($raw['client_mtime']) : (isset($raw['modified']) ? strtotime($raw['modified']) : $_SERVER['REQUEST_TIME']);
 		$stat['dirs'] = 0;
 		if ($raw['is_dir']) {
-			$stat['dirs'] = (int)(bool)$this->query('select path from '.$this->DB_TableName.' where isdir=1 and path='.$this->DB->quote(strtolower($raw['path'])));
+			$stat['dirs'] = (int) (bool) $this->query('select path from ' . $this->DB_TableName . ' where isdir=1 and path=' . $this->DB->quote(strtolower($raw['path'])));
 		}
 		
 		if (!empty($raw['url'])) {
 			$stat['url'] = $raw['url'];
-		} else if (! $this->disabledGetUrl) {
+		} else if (!$this->disabledGetUrl) {
 			$stat['url'] = '1';
 		}
 		if (isset($raw['width'])) {
@@ -1338,7 +1337,9 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 */
 	protected function _save($fp, $path, $name, $stat) {
-		if ($name) $path .= '/' . $name;
+		if ($name) {
+			$path .= '/' . $name;
+		}
 		$path = $this->_normpath($path);
 		try {
 			$this->dropbox->putFile($path, $fp);

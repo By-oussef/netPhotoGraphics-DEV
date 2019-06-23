@@ -100,17 +100,17 @@ class JSMin {
 			// determine next command
 			$command = self::ACTION_KEEP_A; // default
 			if ($this->a === ' ') {
-				if (! $this->isAlphaNum($this->b)) {
+				if (!$this->isAlphaNum($this->b)) {
 					$command = self::ACTION_DELETE_A;
 				}
 			} elseif ($this->a === "\n") {
 				if ($this->b === ' ') {
 					$command = self::ACTION_DELETE_A_B;
 				} elseif (false === strpos('{[(+-', $this->b) 
-						  && ! $this->isAlphaNum($this->b)) {
+						  && !$this->isAlphaNum($this->b)) {
 					$command = self::ACTION_DELETE_A;
 				}
-			} elseif (! $this->isAlphaNum($this->a)) {
+			} elseif (!$this->isAlphaNum($this->a)) {
 				if ($this->b === ' '
 					|| ($this->b === "\n" 
 						&& (false === strpos('}])+-"\'', $this->a)))) {
@@ -173,7 +173,7 @@ class JSMin {
 							$pattern      .= $this->a;
 						} elseif (ord($this->a) <= self::ORD_LF) {
 							throw new JSMin_UnterminatedRegExpException(
-								'Unterminated RegExp: '. var_export($pattern, true));
+								'Unterminated RegExp: ' . var_export($pattern, true));
 						}
 						$this->output .= $this->a;
 					}
@@ -200,7 +200,7 @@ class JSMin {
 				}
 				// make sure it's a keyword, not end of an identifier
 				$charBeforeKeyword = substr($this->output, $length - strlen($m[0]) - 1, 1);
-				if (! $this->isAlphaNum($charBeforeKeyword)) {
+				if (!$this->isAlphaNum($charBeforeKeyword)) {
 					return true;
 				}
 			}

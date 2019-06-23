@@ -901,11 +901,9 @@ class getid3_mp3 extends getid3_handler
 			if ($ExpectedNumberOfAudioBytes > ($info['avdataend'] - $info['avdataoffset'])) {
 				if ($this->isDependencyFor('matroska') || $this->isDependencyFor('riff')) {
 					// ignore, audio data is broken into chunks so will always be data "missing"
-				}
-				elseif (($ExpectedNumberOfAudioBytes - ($info['avdataend'] - $info['avdataoffset'])) == 1) {
+				} elseif (($ExpectedNumberOfAudioBytes - ($info['avdataend'] - $info['avdataoffset'])) == 1) {
 					$this->warning('Last byte of data truncated (this is a known bug in Meracl ID3 Tag Writer before v1.3.5)');
-				}
-				else {
+				} else {
 					$this->warning('Probable truncated file: expecting ' . $ExpectedNumberOfAudioBytes . ' bytes of audio data, only found ' . ($info['avdataend'] - $info['avdataoffset']) . ' (short by ' . ($ExpectedNumberOfAudioBytes - ($info['avdataend'] - $info['avdataoffset'])) . ' bytes)');
 				}
 			} else {
@@ -1429,7 +1427,7 @@ class getid3_mp3 extends getid3_handler
 					$info = $dummy;
 					$info['avdataoffset'] = $avdataoffset + $SynchSeekOffset;
 					switch (isset($info['fileformat']) ? $info['fileformat'] : '') {
-						case '' : case 'id3' : case 'ape' : case 'mp3' : $info['fileformat']          = 'mp3';
+						case '' : case 'id3' : case 'ape' : case 'mp3' : $info['fileformat'] = 'mp3';
 							$info['audio']['dataformat'] = 'mp3';
 							break;
 					}

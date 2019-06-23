@@ -85,7 +85,7 @@ class elFinderSession implements elFinderSessionInterface
 		$data = null;
 
 		if ($this->started) {
-			$session =& $this->getSessionRef($key);
+			$session = & $this->getSessionRef($key);
 			$data = $session;
 			if ($data && $this->base64encode) {
 				$data = $this->decodeData($data);
@@ -171,7 +171,7 @@ class elFinderSession implements elFinderSessionInterface
 				if (!isset($_SESSION[$cat])) {
 					$_SESSION[$cat] = null;
 				}
-				$session =& $_SESSION[$cat];
+				$session = & $_SESSION[$cat];
 			} else {
 				if (!isset($_SESSION[$cat]) || !is_array($_SESSION[$cat])) {
 					$_SESSION[$cat] = array();
@@ -179,7 +179,7 @@ class elFinderSession implements elFinderSessionInterface
 				if (!isset($_SESSION[$cat][$name])) {
 					$_SESSION[$cat][$name] = null;
 				}
-				$session =& $_SESSION[$cat][$name];
+				$session = & $_SESSION[$cat][$name];
 			}
 		}
 		return $session;
@@ -237,7 +237,7 @@ class elFinderSession implements elFinderSessionInterface
 			$closed = true;
 			$this->start();
 		}
-		$session =& $this->getSessionRef($key);
+		$session = & $this->getSessionRef($key);
 		if ($this->base64encode) {
 			$data = $this->encodeData($data);
 		}

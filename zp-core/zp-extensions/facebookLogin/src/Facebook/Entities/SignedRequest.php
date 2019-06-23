@@ -133,7 +133,7 @@ class SignedRequest
 	$hashedSig = static::hashSignature($encodedPayload, $appSecret);
 	$encodedSig = static::base64UrlEncode($hashedSig);
 
-	return $encodedSig.'.'.$encodedPayload;
+	return $encodedSig . '.' . $encodedPayload;
   }
 
   /**
