@@ -65,9 +65,8 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 				foreach ($albumids as $albumid) {
 					$count++;
 					$imageWhere .= 'albumid=' . $albumid['id'];
-					if ($count != count($albumids)) {
-											$imageWhere .= " OR ";
-					}
+					if ($count != count($albumids))
+						$imageWhere .= " OR ";
 				}
 			}
 			$imageids = query_full_array("SELECT id, albumid FROM " . prefix('images') . $imageWhere);
@@ -80,9 +79,8 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 				foreach ($imageids as $imageid) {
 					$count++;
 					$tagWhere .= '(o.objectid =' . $imageid['id'] . " AND o.tagid = t.id AND o.type = 'images')";
-					if ($count != count($imageids)) {
-											$tagWhere .= " OR ";
-					}
+					if ($count != count($imageids))
+						$tagWhere .= " OR ";
 				}
 			}
 			if (empty($tagWhere)) {
@@ -100,9 +98,8 @@ function getAllTagsFromAlbum($albumname, $subalbums = false, $mode = 'images') {
 				foreach ($albumids as $albumid) {
 					$count++;
 					$tagWhere .= '(o.objectid =' . $albumid['id'] . " AND o.tagid = t.id AND o.type = 'albums')";
-					if ($count != count($albumids)) {
-											$tagWhere .= " OR ";
-					}
+					if ($count != count($albumids))
+						$tagWhere .= " OR ";
 				}
 			}
 			if (empty($tagWhere)) {
@@ -165,9 +162,8 @@ function getAllTagsFromZenpage($mode = 'news') {
 		foreach ($ids as $id) {
 			$count++;
 			$tagWhere .= '(o.objectid =' . $id . " AND o.tagid = t.id AND o.type = '" . $type . "')";
-			if ($count != count($ids)) {
-							$tagWhere .= " OR ";
-			}
+			if ($count != count($ids))
+				$tagWhere .= " OR ";
 		}
 	}
 	if (empty($tagWhere)) {
@@ -253,9 +249,8 @@ function printAllTags($tags, $mode, $separator = '', $class = '', $showcounter =
 	if (!is_array($tags)) {
 		return FALSE;
 	}
-	if (!empty($class)) {
-			$class = 'class="' . $class . '"';
-	}
+	if (!empty($class))
+		$class = 'class="' . $class . '"';
 	$counter = '';
 	echo "<ul " . $class . ">\n";
 	$loopcount = '';
@@ -276,9 +271,8 @@ function printAllTags($tags, $mode, $separator = '', $class = '', $showcounter =
 			if ($showcounter) {
 				$counter = ' (' . $count . ')';
 			}
-			if ($loopcount == $tagcount) {
-							$separator = '';
-			}
+			if ($loopcount == $tagcount)
+				$separator = '';
 			echo "<li><a class=\"tagLink\" href=\"" . html_encode(getSearchURL($tname, '', 'tags', 0)) . "\"" . $style . ">" . $tname . $counter . "</a>" . $separator . "</li>\n";
 		}
 	}
@@ -292,13 +286,11 @@ function printAllTags($tags, $mode, $separator = '', $class = '', $showcounter =
  * @return array
  */
 function getAllTagsFromAlbum_multi_unique($array) {
-	foreach ($array as $k => $na) {
-			$new[$k] = serialize($na);
-	}
+	foreach ($array as $k => $na)
+		$new[$k] = serialize($na);
 	$uniq = array_unique($new);
-	foreach ($uniq as $k => $ser) {
-			$new1[$k] = getSerializedArray($ser);
-	}
+	foreach ($uniq as $k => $ser)
+		$new1[$k] = getSerializedArray($ser);
 	return ($new1);
 }
 

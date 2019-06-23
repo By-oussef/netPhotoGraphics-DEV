@@ -1,7 +1,6 @@
 <?php
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,10 +41,7 @@ if (!defined('WEBPATH')) {
 				// ]]> -->
 			</script>
 		<?php } ?>
-		<?php if (class_exists('RSS')) {
-	printRSSHeaderLink('Album', gettext('Gallery'));
-}
-?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Album', gettext('Gallery')); ?>
 	</head>
 	<body class="sidebars">
 		<?php npgFilters::apply('theme_body_open'); ?>
@@ -103,9 +99,8 @@ if (!defined('WEBPATH')) {
 										?>
 									</div>
 									<?php
-									If (function_exists('printAddToFavorites')) {
-																			printAddToFavorites($_current_image);
-									}
+									If (function_exists('printAddToFavorites'))
+										printAddToFavorites($_current_image);
 									@call_user_func('printRating');
 									@call_user_func('printCommentForm');
 									printCodeblock(2);

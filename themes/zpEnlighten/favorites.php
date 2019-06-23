@@ -1,7 +1,6 @@
 <?php
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 if (class_exists('favorites')) {
 	?>
 	<!DOCTYPE html>

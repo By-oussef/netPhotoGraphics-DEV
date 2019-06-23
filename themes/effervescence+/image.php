@@ -1,8 +1,7 @@
 <?php
 // force UTF-8 Ø
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -39,10 +38,7 @@ if (!defined('WEBPATH')) {
 				// ]]> -->
 			</script>
 		<?php } ?>
-		<?php if (class_exists('RSS')) {
-	printRSSHeaderLink('Gallery', 'Gallery RSS');
-}
-?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', 'Gallery RSS'); ?>
 	</head>
 
 	<body onload="blurAnchors()">
@@ -162,9 +158,8 @@ if (!defined('WEBPATH')) {
 				<p><?php printImageDesc(); ?></p>
 				<?php
 				@call_user_func('printRating');
-				If (function_exists('printAddToFavorites')) {
-									printAddToFavorites($_current_image);
-				}
+				If (function_exists('printAddToFavorites'))
+					printAddToFavorites($_current_image);
 				if (simpleMap::mapPlugin()) {
 					?>
 					<div id="map_link">

@@ -1,8 +1,7 @@
 <?php
 // force UTF-8 Ø
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,10 +14,7 @@ if (!defined('WEBPATH')) {
 		}
 		?>
 
-		<?php if (class_exists('RSS')) {
-	printRSSHeaderLink('Gallery', 'Gallery RSS');
-}
-?>
+		<?php if (class_exists('RSS')) printRSSHeaderLink('Gallery', 'Gallery RSS'); ?>
 	</head>
 
 	<body onload="blurAnchors()">

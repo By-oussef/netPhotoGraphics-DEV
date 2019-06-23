@@ -39,9 +39,8 @@ if (!isset($zenpage)) {
 			<div id="wrapnav">
 				<div id="navbar">
 					<span><?php
-						if ($_gallery->getWebsiteURL()) {
-													printHomeLink('', ' | ');
-						}
+						if ($_gallery->getWebsiteURL())
+							printHomeLink('', ' | ');
 						printGalleryTitle();
 						?></span>
 				</div>

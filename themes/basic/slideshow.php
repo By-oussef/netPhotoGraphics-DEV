@@ -1,8 +1,7 @@
 <?php
 // force UTF-8 Ø
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 if (function_exists('printSlideShow')) {
 	?>
 	<!DOCTYPE html>

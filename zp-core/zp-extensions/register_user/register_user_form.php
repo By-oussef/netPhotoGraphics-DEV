@@ -36,10 +36,7 @@ if (class_exists('_Authority')) {
 			if (!getOption('register_user_email_is_id')) {
 				?>
 				<p>
-					<label for="admin_email"><?php echo gettext("Email"); ?><?php if (!$emailid) {
-	echo '<strong>*</strong>';
-}
-?></label>
+					<label for="admin_email"><?php echo gettext("Email"); ?><?php if (!$emailid) echo '<strong>*</strong>'; ?></label>
 					<input type="text" id="admin_email" name="admin_email" value="<?php echo html_encode($admin_e); ?>" size="<?php echo TEXT_INPUT_SIZE; ?>" class="inputbox"/>
 				</p>
 				<?php
@@ -100,15 +97,12 @@ if (class_exists('_Authority')) {
 				?>
 				<p>
 					<?php
-					if (isset($captcha['html'])) {
-											echo $captcha['html'];
-					}
-					if (isset($captcha['input'])) {
-											echo $captcha['input'];
-					}
-					if (isset($captcha['hidden'])) {
-											echo $captcha['hidden'];
-					}
+					if (isset($captcha['html']))
+						echo $captcha['html'];
+					if (isset($captcha['input']))
+						echo $captcha['input'];
+					if (isset($captcha['hidden']))
+						echo $captcha['hidden'];
 					?>
 				</p>
 				<?php

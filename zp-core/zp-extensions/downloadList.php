@@ -321,9 +321,8 @@ class AlbumZip {
 			$image = newImage($album, $imagename);
 			if ($fromcache) {
 				$full = $image->getSizedImage($defaultSize);
-				if (strpos($full, 'i.php?') !== false) {
-									continue;
-				}
+				if (strpos($full, 'i.php?') !== false)
+					continue;
 				if (UTF8_IMAGE_URI) {
 					$full = internalToFilesystem($full);
 				}

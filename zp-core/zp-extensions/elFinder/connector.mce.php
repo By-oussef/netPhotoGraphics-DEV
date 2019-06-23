@@ -9,9 +9,8 @@ npg_session_start();
 admin_securityChecks(ALBUM_RIGHTS | ZENPAGE_PAGES_RIGHTS | ZENPAGE_PAGES_RIGHTS, currentRelativeURL());
 XSRFdefender('elFinder');
 $locale = substr(getOption('locale'), 0, 2);
-if (empty($locale)) {
+if (empty($locale))
 	$locale = 'en';
-}
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,7 +1,6 @@
 <?php
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 if (class_exists('CMS')) {
 	?>
 	<!DOCTYPE html>
@@ -12,9 +11,8 @@ if (class_exists('CMS')) {
 
 			scriptLoader($_themeroot . '/zen.css');
 
-			if (class_exists('RSS')) {
-							printRSSHeaderLink('Gallery', gettext('Gallery'));
-			}
+			if (class_exists('RSS'))
+				printRSSHeaderLink('Gallery', gettext('Gallery'));
 			?>
 		</head>
 		<body class="sidebars">

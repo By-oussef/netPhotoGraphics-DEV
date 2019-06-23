@@ -185,9 +185,8 @@ define('FULLWEBPATH', FULLHOSTPATH . WEBPATH);
 
 if (!defined('COOKIE_PERSISTENCE')) {
 	$persistence = getOption('cookie_persistence');
-	if (!$persistence) {
-			$persistence = 5184000;
-	}
+	if (!$persistence)
+		$persistence = 5184000;
 	define('COOKIE_PERSISTENCE', $persistence);
 	unset($persistence);
 }

@@ -38,9 +38,8 @@ class _TrivialSpam {
 	 * @return SpamFilter
 	 */
 	function __construct() {
-		if (OFFSET_PATH == 2) {
-					setOptionDefault('spamFilter_none_action', 'pass');
-		}
+		if (OFFSET_PATH == 2)
+			setOptionDefault('spamFilter_none_action', 'pass');
 	}
 
 	function displayName() {

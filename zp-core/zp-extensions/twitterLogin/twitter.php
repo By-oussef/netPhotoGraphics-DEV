@@ -9,9 +9,8 @@
  *
  * @package plugins/twitterLogin
  */
-if (!defined('OFFSET_PATH')) {
+if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 4);
-}
 require_once(dirname(dirname(dirname(__FILE__))) . '/admin-functions.php');
 
 npg_session_start();
@@ -31,7 +30,7 @@ if (isset($_REQUEST['redirect'])) {
 
 
 // Include twitter PHP Library
-require_once(CORE_SERVERPATH . PLUGIN_FOLDER . "/common/oAuth/twitteroauth.php");
+require_once(CORE_SERVERPATH .  PLUGIN_FOLDER . "/common/oAuth/twitteroauth.php");
 $error = '';
 
 if (isset($_GET['request'])) {

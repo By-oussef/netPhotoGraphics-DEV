@@ -74,10 +74,7 @@ function getOptionContent() {
 				var optionholder = new Array();
 				// ]]> -->
 			</script>
-			<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) {
-	echo '&amp;single=' . $showExtension;
-}
-?>" method="post" autocomplete="off" >
+			<form class="dirtylistening" onReset="setClean('form_options');" id="form_options" action="?action=saveoptions<?php if (isset($_GET['single'])) echo '&amp;single=' . $showExtension; ?>" method="post" autocomplete="off" >
 				<?php XSRFToken('saveoptions'); ?>
 				<input type="hidden" name="saveoptions" value="plugin" />
 				<input type="hidden" name="subpage" value="<?php echo $subpage; ?>" />
@@ -143,10 +140,7 @@ function getOptionContent() {
 							?>
 							<!-- <?php echo $extension; ?> -->
 							<tr>
-								<td class="option_name<?php if ($showExtension) {
-	echo ' option_shaded';
-}
-?>">
+								<td class="option_name<?php if ($showExtension) echo ' option_shaded'; ?>">
 									<span id="<?php echo $extension; ?>">
 										<?php
 										if ($showExtension) {
@@ -172,10 +166,7 @@ function getOptionContent() {
 											?>
 											<span class="icons">
 												<a href="<?php echo $optionlink; ?>" title="<?php printf(gettext("Change %s options"), html_encode($extension)); ?>">
-													<span<?php if (!$enabled) {
-	echo ' style="color: orange"';
-}
-?>>
+													<span<?php if (!$enabled) echo ' style="color: orange"'; ?>>
 														<?php echo OPTIONS_ICON; ?>
 													</span>
 													<?php echo $extension; ?>
@@ -191,10 +182,7 @@ function getOptionContent() {
 										?>
 									</span>
 								</td>
-								<td class="option_value<?php if ($showExtension) {
-	echo ' option_shaded';
-}
-?>" colspan="100%">
+								<td class="option_value<?php if ($showExtension) echo ' option_shaded'; ?>" colspan="100%">
 									<?php echo $plugin_description; ?>
 								</td>
 							</tr>

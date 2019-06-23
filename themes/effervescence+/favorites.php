@@ -1,9 +1,8 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 if (class_exists('favorites')) {
 	$map = simpleMap::mapPlugin();
 	?>
@@ -184,10 +183,7 @@ if (class_exists('favorites')) {
 						</div> <!-- main -->
 						<div class="clearage"></div>
 						<span style="text-align:center"><?php @call_user_func('printSlideShowLink'); ?></span>
-						<?php if (isset($firstImage)) {
-	printNofM('Photo', $firstImage, $lastImage, getNumImages());
-}
-?>
+						<?php if (isset($firstImage)) printNofM('Photo', $firstImage, $lastImage, getNumImages()); ?>
 					</div> <!-- content -->
 					<?php
 				} else { /* no images to display */

@@ -1,9 +1,8 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 ?>
 <!DOCTYPE html>
 
@@ -38,10 +37,7 @@ if (!defined('WEBPATH')) {
 				}
 				?>
 
-				<?php if (function_exists('printAddToFavorites')) {
-	printAddToFavorites($_current_album);
-}
-?>
+				<?php if (function_exists('printAddToFavorites')) printAddToFavorites($_current_album); ?>
 
 				<!-- Rating -->
 				<?php

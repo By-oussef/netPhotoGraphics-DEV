@@ -1,7 +1,4 @@
-<?php if (!defined('WEBPATH')) {
-	die();
-}
-?>
+<?php if (!defined('WEBPATH')) die(); ?>
 <!DOCTYPE html>
 <head>
 	<?php

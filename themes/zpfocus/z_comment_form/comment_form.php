@@ -18,9 +18,8 @@
 			<label>
 				<?php printf(gettext("%sName:"), $star); ?>
 				<?php if (getOption('comment_form_anon') && !$disabled['anon']) { ?>
-					(<input type="checkbox" name="anon" value="1"<?php if ($stored['anon']) {
+					(<input type="checkbox" name="anon" value="1"<?php if ($stored['anon'])
 				echo ' checked="checked"';
-}
 			echo $disabled['anon'];
 					?> /> <?php echo gettext(" <em>anonymous</em> "); ?>)
 	<?php } ?>
@@ -102,21 +101,16 @@
 		?>
 		<div>
 			<label><?php echo gettext("Enter CAPTCHA:"); ?></label>
-			<?php if (isset($captcha['html']) && isset($captcha['input'])) {
-	echo $captcha['html'];
-}
-?>
+			<?php if (isset($captcha['html']) && isset($captcha['input'])) echo $captcha['html']; ?>
 			<?php
 			if (isset($captcha['input'])) {
 				echo $captcha['input'];
 			} else {
-				if (isset($captcha['html'])) {
-									echo $captcha['html'];
-				}
+				if (isset($captcha['html']))
+					echo $captcha['html'];
 			}
-			if (isset($captcha['hidden'])) {
-							echo $captcha['hidden'];
-			}
+			if (isset($captcha['hidden']))
+				echo $captcha['hidden'];
 			?>
 		</div>
 	<?php
@@ -124,10 +118,7 @@
 
 	if (getOption('comment_form_private') && !$disabled['private']) {
 		?>
-		<input type="checkbox" name="private" value="1"<?php if ($stored['private']) {
-	echo ' checked="checked"';
-}
-?> />
+		<input type="checkbox" name="private" value="1"<?php if ($stored['private']) echo ' checked="checked"'; ?> />
 				<?php echo gettext("Private comment (don't publish)"); ?>
 			<?php } ?>
 	<div>

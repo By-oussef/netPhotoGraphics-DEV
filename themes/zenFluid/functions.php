@@ -4,9 +4,8 @@
 /**
  * Remove admin toolbox for all but site and album admins.
  */
-if (!npg_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
+if (!npg_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
 	npgFilters::remove('theme_body_close', 'adminToolbox');
-}
 
 /**
  * Returns an image for the home page
@@ -14,9 +13,8 @@ if (!npg_loggedin(ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
  */
 function printHomepageImage($imageRoot, $imageRandom, $titleStyle, $imageStyle) {
 	global $_gallery;
-	if ($imageRoot == '*All Albums*') {
-			$imageRoot = '';
-	}
+	if ($imageRoot == '*All Albums*')
+		$imageRoot = '';
 	if (empty($imageRoot)) {
 		if ($imageRandom) {
 			$titleImage = getRandomImages();
@@ -85,9 +83,8 @@ function getLatestImagesAlbum($rootAlbum = '') {
 		$albumInWhere = prefix('albums') . ".show=1";
 	}
 	$query = "SELECT id FROM " . prefix('albums') . " WHERE ";
-	if ($albumInWhere) {
-			$query .= $albumInWhere . ' AND ';
-	}
+	if ($albumInWhere)
+		$query .= $albumInWhere . ' AND ';
 	$query .= "folder LIKE " . db_quote(db_LIKE_escape($albumfolder) . '%');
 	$result = query($query);
 	if ($result) {

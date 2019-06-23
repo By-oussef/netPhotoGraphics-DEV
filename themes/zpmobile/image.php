@@ -1,9 +1,8 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -83,9 +82,8 @@ if (!defined('WEBPATH')) {
 						printSlideShowLink();
 						echo '</span>';
 					}
-					if (function_exists('printAddToFavorites')) {
-											printAddToFavorites($_current_image);
-					}
+					if (function_exists('printAddToFavorites'))
+						printAddToFavorites($_current_image);
 					if (function_exists('printRating')) {
 						echo '<div id="rating">';
 						printRating();

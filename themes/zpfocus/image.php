@@ -2,10 +2,7 @@
 <?php include("inc-sidebar.php"); ?>
 
 <div class="right">
-	<?php if ($zpfocus_social) {
-	include ("inc-social.php");
-}
-?>
+	<?php if ($zpfocus_social) include ("inc-social.php"); ?>
 	<h1 id="tagline"><?php
 		printParentBreadcrumb("", " / ", " / ");
 		printAlbumBreadcrumb("", " / ");
@@ -93,10 +90,7 @@
 	<?php } ?>
 	<?php printCodeblock(); ?>
 
-	<?php if (function_exists('printCommentForm')) {
-	printCommentForm();
-}
-?>
+	<?php if (function_exists('printCommentForm')) printCommentForm(); ?>
 
 	<div class="loading">
 		<div id="exif" style="padding:20px; background:#fff; border:5px solid #eee;">

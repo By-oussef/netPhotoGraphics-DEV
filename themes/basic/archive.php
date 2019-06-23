@@ -1,9 +1,8 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,9 +13,8 @@ if (!defined('WEBPATH')) {
 
 		scriptLoader($zenCSS);
 		scriptLoader(dirname(dirname($zenCSS)) . '/common.css');
-		if (class_exists('RSS')) {
-					printRSSHeaderLink('Gallery', gettext('Gallery'));
-		}
+		if (class_exists('RSS'))
+			printRSSHeaderLink('Gallery', gettext('Gallery'));
 		?>
 	</head>
 	<body>
@@ -66,9 +64,8 @@ if (!defined('WEBPATH')) {
 			}
 			?>
 			<?php
-			if (class_exists('RSS')) {
-							printRSSLink('Gallery', '', 'RSS', ' | ');
-			}
+			if (class_exists('RSS'))
+				printRSSLink('Gallery', '', 'RSS', ' | ');
 			printSoftwareLink();
 			@call_user_func('printUserLogin_out', " | ");
 			?>

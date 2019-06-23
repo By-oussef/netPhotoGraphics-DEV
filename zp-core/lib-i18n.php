@@ -168,9 +168,8 @@ class i18n {
 		}
 		$disallow = getSerializedArray(getOption('locale_disallowed'));
 		if (isset($disallow[$locale])) {
-			if (DEBUG_LOCALE) {
-							debugLogBacktrace("self::setupCurrentLocale($override): $locale denied by option.");
-			}
+			if (DEBUG_LOCALE)
+				debugLogBacktrace("self::setupCurrentLocale($override): $locale denied by option.");
 			$locale = getOption('locale');
 			if (empty($locale) || isset($disallow[$locale])) {
 				$languages = self::generateLanguageList();
@@ -188,9 +187,8 @@ class i18n {
 				}
 			}
 		}
-		if (DEBUG_LOCALE) {
-					debugLogBacktrace("self::setupCurrentLocale($override): locale=$locale, \$result=$result");
-		}
+		if (DEBUG_LOCALE)
+			debugLogBacktrace("self::setupCurrentLocale($override): locale=$locale, \$result=$result");
 		self::setupDomain();
 		return $result;
 	}
@@ -251,9 +249,8 @@ class i18n {
 	 * @param string $userlocale
 	 */
 	static function validateLocale($userlocale, $source) {
-		if (DEBUG_LOCALE) {
-					debugLog("self::validateLocale($userlocale,$source)");
-		}
+		if (DEBUG_LOCALE)
+			debugLog("self::validateLocale($userlocale,$source)");
 		$userlocale = strtoupper(str_replace('-', '_', $userlocale));
 		$languageSupport = self::generateLanguageList();
 
@@ -262,15 +259,13 @@ class i18n {
 			foreach ($languageSupport as $key => $value) {
 				if (strtoupper($value) == $userlocale) { // we got a match
 					$locale = $value;
-					if (DEBUG_LOCALE) {
-											debugLog("locale set from $source: " . $locale);
-					}
+					if (DEBUG_LOCALE)
+						debugLog("locale set from $source: " . $locale);
 					break;
 				} else if (@preg_match('/^' . $userlocale . '/', strtoupper($value))) { // we got a partial match
 					$locale = $value;
-					if (DEBUG_LOCALE) {
-											debugLog("locale set from $source (partial match): " . $locale);
-					}
+					if (DEBUG_LOCALE)
+						debugLog("locale set from $source (partial match): " . $locale);
 					break;
 				}
 			}
@@ -285,9 +280,8 @@ class i18n {
 	 */
 	static function setMainDomain() {
 		global $_current_admin_obj, $_current_locale;
-		if (DEBUG_LOCALE) {
-					debugLogBackTrace("i18n::setMainDomain()");
-		}
+		if (DEBUG_LOCALE)
+			debugLogBackTrace("i18n::setMainDomain()");
 
 		//	check url language for language
 		if (isset($_REQUEST['locale'])) {
@@ -297,42 +291,37 @@ class i18n {
 			} else {
 				clearNPGCookie('dynamic_locale');
 			}
-			if (DEBUG_LOCALE) {
-							debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_current_locale");
-			}
+			if (DEBUG_LOCALE)
+				debugLog("dynamic_locale from URL: " . sanitize($_REQUEST['locale']) . "=>$_current_locale");
 		} else {
 			$matches = explode('.', @$_SERVER['HTTP_HOST']);
 			$_current_locale = self::validateLocale($matches[0], 'HTTP_HOST');
 			if ($_current_locale && getNPGCookie('dynamic_locale')) {
 				clearNPGCookie('dynamic_locale');
 			}
-			if (DEBUG_LOCALE) {
-							debugLog("dynamic_locale from HTTP_HOST: " . sanitize($matches[0]) . "=>$_current_locale");
-			}
+			if (DEBUG_LOCALE)
+				debugLog("dynamic_locale from HTTP_HOST: " . sanitize($matches[0]) . "=>$_current_locale");
 		}
 
 		//	check for a language cookie
 		if (!$_current_locale) {
 			$_current_locale = getNPGCookie('dynamic_locale');
-			if (DEBUG_LOCALE) {
-							debugLog("locale from cookie: " . $_current_locale . ';');
-			}
+			if (DEBUG_LOCALE)
+				debugLog("locale from cookie: " . $_current_locale . ';');
 		}
 
 		//	check if the user has a language selected
 		if (!$_current_locale && is_object($_current_admin_obj)) {
 			$_current_locale = $_current_admin_obj->getLanguage();
-			if (DEBUG_LOCALE) {
-							debugLog("locale from user: " . $_current_locale);
-			}
+			if (DEBUG_LOCALE)
+				debugLog("locale from user: " . $_current_locale);
 		}
 
 		//	check the language option
 		if (!$_current_locale) {
 			$_current_locale = getOption('locale');
-			if (DEBUG_LOCALE) {
-							debugLog("locale from option: " . $_current_locale);
-			}
+			if (DEBUG_LOCALE)
+				debugLog("locale from option: " . $_current_locale);
 		}
 
 		//check the HTTP accept lang
@@ -342,9 +331,8 @@ class i18n {
 			foreach ($userLang as $lang) {
 				$l = strtoupper($lang['fullcode']);
 				$_current_locale = self::validateLocale($l, 'HTTP Accept Language');
-				if ($_current_locale) {
-									break;
-				}
+				if ($_current_locale)
+					break;
 			}
 		}
 
@@ -361,15 +349,13 @@ class i18n {
 			} else {
 				$_current_locale = array_shift($languageSupport);
 			}
-			if (DEBUG_LOCALE) {
-							debugLog("locale from language list: " . $_current_locale);
-			}
+			if (DEBUG_LOCALE)
+				debugLog("locale from language list: " . $_current_locale);
 		} else {
 			setOption('locale', $_current_locale, false);
 		}
-		if (DEBUG_LOCALE) {
-					debugLog("self::getUserLocale Returning locale: " . $_current_locale);
-		}
+		if (DEBUG_LOCALE)
+			debugLog("self::getUserLocale Returning locale: " . $_current_locale);
 		return self::setupCurrentLocale($_current_locale);
 	}
 

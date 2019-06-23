@@ -26,18 +26,12 @@ function unpublishSubalbums($album) {
  */
 function reveal($content, $visible = false) {
 	?>
-	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) {
-	echo ' style="display:none;"';
-}
-?> class="icons">
+	<span id="<?php echo $content; ?>_reveal"<?php if ($visible) echo ' style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to show content'); ?>">
 			<?php echo ARROW_DOWN_GREEN; ?>
 		</a>
 	</span>
-	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) {
-	echo ' style="display:none;"';
-}
-?> class="icons">
+	<span id="<?php echo $content; ?>_hide"<?php if (!$visible) echo ' style="display:none;"'; ?> class="icons">
 		<a onclick="reveal('<?php echo $content; ?>')" title="<?php echo gettext('Click to hide content'); ?>">
 			<?php echo ARROW_UP_GREEN; ?>
 		</a>
@@ -239,18 +233,12 @@ echo "</head>\n";
 								<?php XSRFToken('publishContent'); ?>
 								<input type="hidden" name="set_defaults" value="true" />
 								<label>
-									<input type="checkbox" name="album_default"	value="1"<?php if ($albpublish) {
-	echo ' checked="checked"';
-}
-?> />
+									<input type="checkbox" name="album_default"	value="1"<?php if ($albpublish) echo ' checked="checked"'; ?> />
 									<?php echo gettext("Publish albums by default"); ?>
 								</label>
 								&nbsp;&nbsp;&nbsp;
 								<label>
-									<input type="checkbox" name="image_default"	value="1"<?php if ($imgpublish) {
-	echo ' checked="checked"';
-}
-?> />
+									<input type="checkbox" name="image_default"	value="1"<?php if ($imgpublish) echo ' checked="checked"'; ?> />
 									<?php echo gettext("Publish images by default"); ?>
 								</label>
 								<br class="clearall">
@@ -278,9 +266,8 @@ echo "</head>\n";
 				<p class="notebox smallbox"><?php echo gettext('<strong>Note:</strong> Items not published by inheritance are not included.'); ?></p>
 				<fieldset class="smallbox">
 					<legend><?php
-						if ($c > 0) {
-													reveal('albumbox', $visible);
-						}
+						if ($c > 0)
+							reveal('albumbox', $visible);
 						echo gettext('Albums not published');
 						?></legend>
 					<?php
@@ -288,16 +275,13 @@ echo "</head>\n";
 						echo sprintf(ngettext('%u unpublished album', '%u unpublished albums', $c), $c);
 					}
 					?>
-					<div id="albumbox"<?php if (!$visible) {
-	echo ' style="display:none"' ?>>
+					<div id="albumbox"<?php if (!$visible) echo ' style="display:none"' ?>>
 						<?php
 						switch ($report) {
 							case 'albums':
 								?>
 								<div class="messagebox fade-message">
-									<h2><?php echo gettext('Album changes applied');
-}
-?></h2>
+									<h2><?php echo gettext('Album changes applied'); ?></h2>
 								</div>
 								<?php
 								break;
@@ -387,17 +371,13 @@ echo "</head>\n";
 				?>
 				<fieldset class="smallbox">
 					<legend><?php
-						if ($c > 0) {
-													reveal('imagebox', $visible);
-						}
+						if ($c > 0)
+							reveal('imagebox', $visible);
 						echo gettext('Images not published');
 						?></legend>
-					<div id="imagebox"<?php if (!$visible) {
-	echo ' style="display:none"' ?>>
+					<div id="imagebox"<?php if (!$visible) echo ' style="display:none"' ?>>
 						<form name="review" action="?tab=content" method="post">
-							<?php XSRFToken('publishContent');
-}
-?>
+							<?php XSRFToken('publishContent'); ?>
 							<?php printf(gettext('Review images older than: %s'), '<input type="text" size="20" id="publish_date" name="publish_date" value="' . $requestdate . '" />'); ?>
 							<br class="clearall">
 							<br class="clearall">
@@ -563,24 +543,20 @@ echo "</head>\n";
 					<br class="clearall">
 					<fieldset class="smallbox">
 						<legend><?php
-							if ($c > 0) {
-															reveal('catbox', $visible);
-							}
+							if ($c > 0)
+								reveal('catbox', $visible);
 							echo gettext('Categories not published');
 							?></legend>
 						<?php
 						if ($output) {
 							echo sprintf(ngettext('%u unpublished category', '%u unpublished categories', $c), $c);
 							?>
-							<div id="catbox"<?php if (!$visible) {
-	echo ' style="display:none"' ?>>
+							<div id="catbox"<?php if (!$visible) echo ' style="display:none"' ?>>
 								<?php
 								if ($report == 'categories') {
 									?>
 									<div class="messagebox fade-message">
-										<h2><?php echo gettext('Category changes applied');
-}
-?></h2>
+										<h2><?php echo gettext('Category changes applied'); ?></h2>
 									</div>
 									<?php
 								}
@@ -631,24 +607,20 @@ echo "</head>\n";
 					?>
 					<fieldset class="smallbox">
 						<legend><?php
-							if ($c > 0) {
-															reveal('newsbox', $visible);
-							}
+							if ($c > 0)
+								reveal('newsbox', $visible);
 							echo gettext('News articles not published');
 							?></legend>
 						<?php
 						if ($output) {
 							echo sprintf(ngettext('%u unpublished article', '%u unpublished articles', $c), $c);
 							?>
-							<div id="newsbox"<?php if (!$visible) {
-	echo ' style="display:none"' ?>>
+							<div id="newsbox"<?php if (!$visible) echo ' style="display:none"' ?>>
 								<?php
 								if ($report == 'news') {
 									?>
 									<div class="messagebox fade-message">
-										<h2><?php echo gettext('News article changes applied');
-}
-?></h2>
+										<h2><?php echo gettext('News article changes applied'); ?></h2>
 									</div>
 									<?php
 								}
@@ -699,9 +671,8 @@ echo "</head>\n";
 					<br class="clearall">
 					<fieldset class="smallbox">
 						<legend><?php
-							if ($c > 0) {
-															reveal('pagebox', $visible);
-							}
+							if ($c > 0)
+								reveal('pagebox', $visible);
 							echo gettext('Pages not published');
 							?></legend>
 						<?php
@@ -715,11 +686,8 @@ echo "</head>\n";
 						if ($output) {
 							echo sprintf(ngettext('%u unpublished page', '%u unpublished pages', $c), $c);
 							?>
-							<div id="pagebox"<?php if (!$visible) {
-	echo ' style="display:none"' ?>>
-								<form class="dirtylistening" onReset="setClean('publish_pages_form');" id="publish_pages_form" name="publish_pages" action="?tab=content" method="post" autocomplete="off"><?php echo gettext('Pages:');
-}
-?>
+							<div id="pagebox"<?php if (!$visible) echo ' style="display:none"' ?>>
+								<form class="dirtylistening" onReset="setClean('publish_pages_form');" id="publish_pages_form" name="publish_pages" action="?tab=content" method="post" autocomplete="off"><?php echo gettext('Pages:'); ?>
 									<label id="autocheck_page">
 										<input type="checkbox" name="checkAllpage" onclick="$('.pagecheck').prop('checked', checked);" />
 										<span id="autotext_page"><?php echo gettext('all'); ?></span>

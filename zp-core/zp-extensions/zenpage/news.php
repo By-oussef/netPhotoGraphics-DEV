@@ -460,10 +460,7 @@ updatePublished('news');
 										</td>
 										<td>
 											<div class="floatright">
-												<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>"<?php if (!$unlocked) {
-	echo ' disabled="disabled"';
-}
-?>/>
+												<input type="checkbox" name="ids[]" value="<?php echo $article->getTitlelink(); ?>"<?php if (!$unlocked) echo ' disabled="disabled"'; ?>/>
 											</div>
 										</td>
 									</tr>

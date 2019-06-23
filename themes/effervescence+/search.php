@@ -1,9 +1,8 @@
 <?php
 // force UTF-8 Ø
 
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 
 $thumbnailColumns = "3";
 $thumbnailRows = "6";
@@ -163,10 +162,7 @@ $backgroundImagePath = "";
 										while (next_page()) {
 											$c++;
 											?>
-											<li<?php if ($c > SHOW_ITEMS) {
-	echo ' class="pages_extrashow" style="display:none;"';
-}
-?>>
+											<li<?php if ($c > SHOW_ITEMS) echo ' class="pages_extrashow" style="display:none;"'; ?>>
 												<?php print printPageURL(); ?>
 												<p style="text-indent:1em;"><?php echo exerpt($_CMS_current_page->getContent(), TRUNCATE_LENGTH); ?></p>
 											</li>
@@ -178,9 +174,8 @@ $backgroundImagePath = "";
 								<?php
 							}
 							if ($numnews > 0) {
-								if ($numpages > 0) {
-																	echo '<br />';
-								}
+								if ($numpages > 0)
+									echo '<br />';
 								?>
 								<div id="efsearchhead_news">
 									<h3><?php printf(gettext('Articles (%s)'), $numnews); ?></h3>
@@ -200,10 +195,7 @@ $backgroundImagePath = "";
 										while (next_news()) {
 											$c++;
 											?>
-											<li<?php if ($c > SHOW_ITEMS) {
-	echo ' class="news_extrashow" style="display:none;"';
-}
-?>>
+											<li<?php if ($c > SHOW_ITEMS) echo ' class="news_extrashow" style="display:none;"'; ?>>
 												<?php printNewsURL(); ?>
 												<p style="text-indent:1em;"><?php echo exerpt($_CMS_current_article->getContent(), TRUNCATE_LENGTH); ?></p>
 											</li>

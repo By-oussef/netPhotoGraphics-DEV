@@ -117,10 +117,7 @@
 				$tagstring = implode(', ', $singletag);
 				?>
 				<ul class="album-info">
-					<li class="counts <?php if (($zpmas_thumbsize == 'small') && (getNumAlbums() > 0)) {
-	echo 'smallthumbs';
-}
-?>">
+					<li class="counts <?php if (($zpmas_thumbsize == 'small') && (getNumAlbums() > 0)) echo 'smallthumbs'; ?>">
 						<?php
 						if (getNumAlbums() > 0) {
 							echo getNumAlbums() . ' ' . gettext('subalbums');
@@ -140,10 +137,7 @@
 		<?php endwhile; ?>
 		<?php while (next_image()): ?>
 			<div class="box <?php echo $zpmas_col_image; ?>">
-				<?php if ($zpmas_imagetitle) {
-	echo '<h3>' . getImageTitle() . '</h3>';
-}
-?>
+				<?php if ($zpmas_imagetitle) echo '<h3>' . getImageTitle() . '</h3>'; ?>
 				<div class="image-block" style="width:<?php echo $zpmas_image_size; ?>px;height:<?php echo $zpmas_image_size; ?>px;">
 					<div class="back">
 						<a class="thumb-link" href="<?php echo html_encode(getImageURL()); ?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><?php printCustomSizedImage(getAnnotatedImageTitle(), null, $zpmas_image_size, $zpmas_image_size, $zpmas_image_size, $zpmas_image_size, null, null, null, null, true); ?></a>
@@ -156,10 +150,7 @@
 							} else {
 								echo htmlspecialchars(getUnprotectedImageURL());
 							}
-							?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_themeroot; ?>/images/full-screen<?php if ($zpmas_css == 'dark') {
-								echo "-inv";
-							}
-							?>.png" alt="<?php echo gettext('Preview'); ?>" /></a>
+							?>" title="<?php echo html_encode(getBareImageTitle()); ?>"><img src="<?php echo $_themeroot; ?>/images/full-screen<?php if ($zpmas_css == 'dark') echo "-inv"; ?>.png" alt="<?php echo gettext('Preview'); ?>" /></a>
 						</div>
 					<?php } ?>
 				</div>
@@ -183,9 +174,8 @@
 		<?php printCodeblock(); ?>
 		<?php if (simplemap::mapPlugin()) { ?><div class="post"><?php simplemap::printMap(); ?></div><?php } ?>
 		<?php
-		if (function_exists('printAddToFavorites')) {
-					printAddToFavorites($_current_album);
-		}
+		if (function_exists('printAddToFavorites'))
+			printAddToFavorites($_current_album);
 		?>
 		<?php if (function_exists('printRating')) { ?><div class="post"><?php printRating(); ?></div><?php } ?>
 		<?php if (function_exists('printCommentForm')) { ?><div class="post"><?php printCommentForm(); ?></div><?php } ?>

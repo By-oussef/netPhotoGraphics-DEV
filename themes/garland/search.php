@@ -1,8 +1,7 @@
 <?php
 // force UTF-8 Ø
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,9 +12,8 @@ if (!defined('WEBPATH')) {
 
 		scriptLoader($_themeroot . '/zen.css');
 
-		if (class_exists('RSS')) {
-					printRSSHeaderLink('Gallery', gettext('Gallery'));
-		}
+		if (class_exists('RSS'))
+			printRSSHeaderLink('Gallery', gettext('Gallery'));
 		?>
 		<script type="text/javascript">
 			// <!-- <![CDATA[
@@ -129,10 +127,7 @@ if (!defined('WEBPATH')) {
 														while (next_page()) {
 															$c++;
 															?>
-															<li<?php if ($c > SHOW_ITEMS) {
-	echo ' class="pages_extrashow" style="display:none;"';
-}
-?>>
+															<li<?php if ($c > SHOW_ITEMS) echo ' class="pages_extrashow" style="display:none;"'; ?>>
 			<?php printPageURL(); ?>
 																<p style="text-indent:1em;"><?php echo exerpt($_CMS_current_page->getContent()); ?></p>
 															</li>
@@ -144,9 +139,8 @@ if (!defined('WEBPATH')) {
 												<?php
 											}
 											if ($numnews > 0) {
-												if ($numpages > 0) {
-																									echo '<br />';
-												}
+												if ($numpages > 0)
+													echo '<br />';
 												?>
 												<div id="garland_searchhead_news">
 													<h3><?php printf(gettext('Articles (%s)'), $numnews); ?></h3>
@@ -166,10 +160,7 @@ if (!defined('WEBPATH')) {
 														while (next_news()) {
 															$c++;
 															?>
-															<li<?php if ($c > SHOW_ITEMS) {
-	echo ' class="news_extrashow" style="display:none;"';
-}
-?>>
+															<li<?php if ($c > SHOW_ITEMS) echo ' class="news_extrashow" style="display:none;"'; ?>>
 			<?php printNewsURL(); ?>
 																<p style="text-indent:1em;"><?php echo exerpt($_CMS_current_article->getContent()); ?></p>
 															</li>

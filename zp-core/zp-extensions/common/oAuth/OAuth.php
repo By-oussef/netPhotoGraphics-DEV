@@ -303,9 +303,8 @@ class OAuthRequest {
 						"oauth_nonce"				 => OAuthRequest::generate_nonce(),
 						"oauth_timestamp"		 => OAuthRequest::generate_timestamp(),
 						"oauth_consumer_key" => $consumer->key);
-		if ($token) {
-					$defaults['oauth_token'] = $token->key;
-		}
+		if ($token)
+			$defaults['oauth_token'] = $token->key;
 
 		$parameters = array_merge($defaults, $parameters);
 
@@ -429,15 +428,13 @@ class OAuthRequest {
 		if ($realm) {
 			$out = 'Authorization: OAuth realm="' . OAuthUtil::urlencode_rfc3986($realm) . '"';
 			$first = false;
-		} else {
-					$out = 'Authorization: OAuth';
-		}
+		} else
+			$out = 'Authorization: OAuth';
 
 		$total = array();
 		foreach ($this->parameters as $k => $v) {
-			if (substr($k, 0, 5) != "oauth") {
-							continue;
-			}
+			if (substr($k, 0, 5) != "oauth")
+				continue;
 			if (is_array($v)) {
 				throw new OAuthExcept('Arrays not supported in headers');
 			}
@@ -490,7 +487,7 @@ class OAuthRequest {
 class OAuthServer {
 
 	protected $timestamp_threshold = 300; // in seconds, five minutes
-	protected $version = '1.0'; // hi blaine
+	protected $version = '1.0';			 // hi blaine
 	protected $signature_methods = array();
 	protected $data_store;
 
@@ -655,11 +652,10 @@ class OAuthServer {
 	 * check that the timestamp is new enough
 	 */
 	private function check_timestamp($timestamp) {
-		if (!$timestamp) {
-					throw new OAuthExcept(
+		if (!$timestamp)
+			throw new OAuthExcept(
 			'Missing timestamp parameter. The parameter is required'
 			);
-		}
 
 		// verify that timestamp is recentish
 		$now = time();
@@ -674,11 +670,10 @@ class OAuthServer {
 	 * check that the nonce is not repeated
 	 */
 	private function check_nonce($consumer, $token, $nonce, $timestamp) {
-		if (!$nonce) {
-					throw new OAuthExcept(
+		if (!$nonce)
+			throw new OAuthExcept(
 			'Missing nonce parameter. The parameter is required'
 			);
-		}
 
 		// verify that the nonce is uniqueish
 		$found = $this->data_store->lookup_nonce(
@@ -785,12 +780,10 @@ class OAuthUtil {
 			// otherwise we don't have apache and are just going to have to hope
 			// that $_SERVER actually contains what we need
 			$out = array();
-			if (isset($_SERVER['CONTENT_TYPE'])) {
-							$out['Content-Type'] = $_SERVER['CONTENT_TYPE'];
-			}
-			if (isset($_ENV['CONTENT_TYPE'])) {
-							$out['Content-Type'] = $_ENV['CONTENT_TYPE'];
-			}
+			if (isset($_SERVER['CONTENT_TYPE']))
+				$out['Content-Type'] = $_SERVER['CONTENT_TYPE'];
+			if (isset($_ENV['CONTENT_TYPE']))
+				$out['Content-Type'] = $_ENV['CONTENT_TYPE'];
 
 			foreach ($_SERVER as $key => $value) {
 				if (substr($key, 0, 5) == "HTTP_") {
@@ -811,9 +804,8 @@ class OAuthUtil {
 	// parameters like this
 	// array('a' => array('b','c'), 'd' => 'e')
 	public static function parse_parameters($input) {
-		if (!isset($input) || !$input) {
-					return array();
-		}
+		if (!isset($input) || !$input)
+			return array();
 
 		$pairs = explode('&', $input);
 
@@ -842,9 +834,8 @@ class OAuthUtil {
 	}
 
 	public static function build_http_query($params) {
-		if (!$params) {
-					return '';
-		}
+		if (!$params)
+			return '';
 
 		// Urlencode both keys and values
 		$keys = OAuthUtil::urlencode_rfc3986(array_keys($params));

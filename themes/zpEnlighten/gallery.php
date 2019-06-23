@@ -1,7 +1,6 @@
 <?php
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 ?>
 <!DOCTYPE html>
 <head>
@@ -33,7 +32,7 @@ if (!defined('WEBPATH')) {
 			</div>
 
 			<div id="content-left">
-				<?php if (!getOption("zenpage_zp_index_news") OR !function_exists("printNewsPageListWithNav")) { ?>
+				<?php if (!getOption("zenpage_zp_index_news") OR ! function_exists("printNewsPageListWithNav")) { ?>
 					<div class="gallerydesc" style="margin-right: 20px; margin-left: 2px;"><?php printGalleryDesc(); ?> </div>
 					<div id="albums">
 						<?php $u = 0; ?>

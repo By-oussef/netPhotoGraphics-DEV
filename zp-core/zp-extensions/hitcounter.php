@@ -247,9 +247,8 @@ function getHitcounter($obj = NULL) {
 				} else {
 					$obj = $_CMS_current_article;
 				}
-				if (is_null($obj)) {
-									return 0;
-				}
+				if (is_null($obj))
+					return 0;
 				break;
 			default:
 				$page = stripSuffix($_gallery_page);

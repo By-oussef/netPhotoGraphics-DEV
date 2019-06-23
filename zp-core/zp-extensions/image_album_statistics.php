@@ -211,12 +211,10 @@ function printAlbumStatisticItem($album, $option, $showtitle = false, $showdate 
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
-		if (is_null($width)) {
-					$width = 85;
-		}
-		if (is_null($height)) {
-					$height = 85;
-		}
+		if (is_null($width))
+			$width = 85;
+		if (is_null($height))
+			$height = 85;
 		if (is_null($crop)) {
 			$crop = 1;
 		} else {
@@ -550,12 +548,10 @@ function printImageStatistic($number, $option, $albumfolder = NULL, $showtitle =
 	if (is_null($crop) && is_null($width) && is_null($height)) {
 		$crop = 2;
 	} else {
-		if (is_null($width)) {
-					$width = 85;
-		}
-		if (is_null($height)) {
-					$height = 85;
-		}
+		if (is_null($width))
+			$width = 85;
+		if (is_null($height))
+			$height = 85;
 		if (is_null($crop)) {
 			$crop = 1;
 		} else {

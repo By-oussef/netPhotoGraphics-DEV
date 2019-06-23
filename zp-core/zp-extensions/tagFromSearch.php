@@ -43,9 +43,8 @@ class tagFromSearch {
 
 	static function head() {
 		if (!npg_loggedin(TAGS_RIGHTS)) {
-			if (getOption('tagFromSearch_tagOnly')) {
-							setOption('search_fields', 'tags', false);
-			}
+			if (getOption('tagFromSearch_tagOnly'))
+				setOption('search_fields', 'tags', false);
 		}
 	}
 

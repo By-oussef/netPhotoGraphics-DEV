@@ -136,10 +136,7 @@ if (empty($MCEtoolbars)) {
 } else {
 	foreach ($MCEtoolbars as $key => $toolbar) {
 		?>
-			toolbar<?php if (count($MCEtoolbars) > 1) {
-	echo $key;
-}
-?>: "<?php echo $toolbar; ?>",
+			toolbar<?php if (count($MCEtoolbars) > 1) echo $key; ?>: "<?php echo $toolbar; ?>",
 		<?php
 	}
 }

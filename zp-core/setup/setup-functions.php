@@ -43,16 +43,14 @@ function getResidentFiles($folder, $exclude) {
 				if ($file != 'session') {
 					getResidentFiles($folder . '/' . $file, $exclude);
 					$entry = $folder . '/' . $file;
-					if (CASE_INSENSITIVE) {
-											$entry = strtolower($entry);
-					}
+					if (CASE_INSENSITIVE)
+						$entry = strtolower($entry);
 					$_resident_files[] = $entry;
 				}
 			} else {
 				$entry = $folder . '/' . $file;
-				if (CASE_INSENSITIVE) {
-									$entry = strtolower($entry);
-				}
+				if (CASE_INSENSITIVE)
+					$entry = strtolower($entry);
 				$_resident_files[] = $entry;
 			}
 		}
@@ -383,9 +381,8 @@ function setupLog($message, $anyway = false, $reset = false) {
 		$_logCript = NULL;
 	}
 	if ($debug || $anyway) {
-		if (is_object($_mutex)) {
-					$_mutex->lock();
-		}
+		if (is_object($_mutex))
+			$_mutex->lock();
 		if (!file_exists(dirname(SETUPLOG))) {
 			mkdir_recursive(dirname(SETUPLOG), $chmod | 0311);
 		}
@@ -404,9 +401,8 @@ function setupLog($message, $anyway = false, $reset = false) {
 			chmod(SETUPLOG, LOG_MOD);
 			clearstatcache();
 		}
-		if (is_object($_mutex)) {
-					$_mutex->unlock();
-		}
+		if (is_object($_mutex))
+			$_mutex->unlock();
 	}
 }
 

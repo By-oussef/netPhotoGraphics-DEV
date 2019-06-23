@@ -120,9 +120,8 @@ class PersistentObject {
 	 * which won't be persisted to the database.
 	 */
 	function set($var, $value) {
-		if (empty($var)) {
-					return false;
-		}
+		if (empty($var))
+			return false;
 		$var = strtolower($var);
 		if ($this->loaded && !array_key_exists($var, $this->data)) {
 			$this->tempdata[$var] = $value;
@@ -189,18 +188,16 @@ class PersistentObject {
 			$sql = 'INSERT INTO ' . prefix($this->table) . ' (';
 			$i = 0;
 			foreach (array_keys($insert_data) as $col) {
-				if ($i > 0) {
-									$sql .= ", ";
-				}
+				if ($i > 0)
+					$sql .= ", ";
 				$sql .= "`$col`";
 				$i++;
 			}
 			$sql .= ') VALUES (';
 			$i = 0;
 			foreach (array_values($insert_data) as $value) {
-				if ($i > 0) {
-									$sql .= ', ';
-				}
+				if ($i > 0)
+					$sql .= ', ';
 				if (is_null($value)) {
 					$sql .= 'NULL';
 				} else {
@@ -321,9 +318,8 @@ class PersistentObject {
 				$this->save();
 				$entry = query_single_row($sql);
 				// If we still don't have an entry, something went wrong...
-				if (!$entry) {
-									return null;
-				}
+				if (!$entry)
+					return null;
 				// Save this new entry into the cache so we get a hit next time.
 				$entry = array_change_key_case($entry, CASE_LOWER);
 				$this->addToCache($entry);
@@ -346,10 +342,8 @@ class PersistentObject {
 		} else {
 			$updateUser = $_authority->getMasterUser();
 		}
-		if ($this->transient) {
-					return 0;
-		}
-		// If this object isn't supposed to be persisted, don't save it.
+		if ($this->transient)
+			return 0; // If this object isn't supposed to be persisted, don't save it.
 		if (!$this->unique_set) { // If we don't have a unique set, then this is incorrect. Don't attempt to save.
 			trigger_error('empty $this->unique set is empty', E_USER_ERROR);
 			return 0;
@@ -832,9 +826,8 @@ class ThemeObject extends PersistentObject {
 	function setPublishDate($ed) {
 		if ($ed) {
 			$newtime = dateTimeConvert($ed);
-			if ($newtime === false) {
-							return;
-			}
+			if ($newtime === false)
+				return;
 			$this->set('publishdate', $newtime);
 		} else {
 			$this->set('publishdate', NULL);
@@ -857,9 +850,8 @@ class ThemeObject extends PersistentObject {
 	function setExpireDate($ed) {
 		if ($ed) {
 			$newtime = dateTimeConvert($ed);
-			if ($newtime === false) {
-							return;
-			}
+			if ($newtime === false)
+				return;
 			$this->set('expiredate', $newtime);
 		} else {
 			$this->set('expiredate', NULL);

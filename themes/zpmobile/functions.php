@@ -181,10 +181,7 @@ function jqm_printMenusLinks() {
 		<?php
 		if (extensionEnabled('zenpage') && hasNews()) {
 			?>
-			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_gallery_page == 'news.php') {
-	echo ' data-collapsed="false"';
-}
-?>>
+			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_gallery_page == 'news.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo NEWS_LABEL; ?></h3>
 				<?php printAllNewsCategories(gettext("All"), TRUE, "", "menu-active", true, "submenu", "menu-active"); ?>
 			</div>
@@ -192,10 +189,7 @@ function jqm_printMenusLinks() {
 		}
 		if (function_exists('printAlbumMenu')) {
 			?>
-			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_gallery_page == 'gallery.php' || $_gallery_page == 'album.php' || $_gallery_page == 'image.php') {
-	echo ' data-collapsed="false"';
-}
-?>>
+			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_gallery_page == 'gallery.php' || $_gallery_page == 'album.php' || $_gallery_page == 'image.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Gallery'); ?></h3>
 				<?php printAlbumMenu('list', true, '', '', '', '', 'Gallery Index', false, false, false); ?>
 			</div>
@@ -203,10 +197,7 @@ function jqm_printMenusLinks() {
 		}
 		if (extensionEnabled('zenpage') && hasPages()) {
 			?>
-			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_gallery_page == 'pages.php') {
-	echo ' data-collapsed="false"';
-}
-?>>
+			<div data-role="collapsible" data-content-theme="c" data-theme="b"<?php if ($_gallery_page == 'pages.php') echo ' data-collapsed="false"'; ?>>
 				<h3><?php echo gettext('Pages'); ?></h3>
 				<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active", NULL, true, true, NULL); ?>
 			</div>
@@ -244,9 +235,8 @@ function jqm_printImageAlbumCount() {
 	if ($numalb != 0) {
 		printf(ngettext("%d album", "%d albums", $numalb), $numalb);
 	}
-	if ($numalb != 0 && $numimg != 0) {
-			echo ' / ';
-	}
+	if ($numalb != 0 && $numimg != 0)
+		echo ' / ';
 	if ($numimg != 0) {
 		printf(ngettext("%d image", "%d images", $numimg), $numimg);
 	}

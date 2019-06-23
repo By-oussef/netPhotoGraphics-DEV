@@ -30,9 +30,8 @@
 // force UTF-8 Ø
 
 
-if (!defined('OFFSET_PATH')) {
+if (!defined('OFFSET_PATH'))
 	define('OFFSET_PATH', 2);
-}
 require_once(dirname(__FILE__) . '/functions-basic.php');
 
 $iMutex = new npgMutex('i', @$_GET['limit']);
@@ -85,9 +84,8 @@ if (!isset($_GET['s']) && !isset($_GET['w']) && !isset($_GET['h'])) {
 
 $args = getImageParameters($args, filesystemToInternal($album));
 list($size, $width, $height, $cw, $ch, $cx, $cy, $quality, $thumb, $crop, $thumbstandin, $passedWM, $adminrequest, $effects) = $args;
-if (DEBUG_IMAGE) {
+if (DEBUG_IMAGE)
 	debugLog("i.php($ralbum, $rimage): \$size=$size, \$width=$width, \$height=$height, \$cw=$cw, \$ch=$ch, \$cx=$cx, \$cy=$cy, \$quality=$quality, \$thumb=$thumb, \$crop=$crop, \$thumbstandin=$thumbstandin, \$passedWM=$passedWM, \$adminrequest=$adminrequest, \$effects=$effects");
-}
 
 // Construct the filename to save the cached image.
 $newfilename = getImageCacheFilename(filesystemToInternal($album), filesystemToInternal($image), $args);
@@ -108,16 +106,14 @@ if ($debug) {
 if (!is_dir(SERVERCACHE)) {
 	@mkdir(SERVERCACHE, FOLDER_MOD);
 	@chmod(SERVERCACHE, FOLDER_MOD);
-	if (!is_dir(SERVERCACHE)) {
-			imageProcessing::error('404 Not Found', gettext("The cache directory does not exist. Please create it and set the permissions to 0777."), 'err-failimage.png');
-	}
-	}
+	if (!is_dir(SERVERCACHE))
+		imageProcessing::error('404 Not Found', gettext("The cache directory does not exist. Please create it and set the permissions to 0777."), 'err-failimage.png');
+}
 if (!is_writable(SERVERCACHE)) {
 	@chmod(SERVERCACHE, FOLDER_MOD);
-	if (!is_writable(SERVERCACHE)) {
-			imageProcessing::error('404 Not Found', gettext("The cache directory is not writable! Attempts to chmod did not work."), 'err-failimage.png');
-	}
-	}
+	if (!is_writable(SERVERCACHE))
+		imageProcessing::error('404 Not Found', gettext("The cache directory is not writable! Attempts to chmod did not work."), 'err-failimage.png');
+}
 if (!file_exists($imgfile)) {
 	if (isset($_GET['z'])) { //	flagged as a special image
 		if (DEBUG_IMAGE) {
@@ -155,9 +151,8 @@ $fmt = filemtime($imgfile);
 if (file_exists($newfile) & !$adminrequest) {
 	if (filemtime($newfile) >= filemtime($imgfile)) {
 		$process = false;
-		if (DEBUG_IMAGE) {
-					debugLog("Cache file valid");
-		}
+		if (DEBUG_IMAGE)
+			debugLog("Cache file valid");
 	}
 }
 

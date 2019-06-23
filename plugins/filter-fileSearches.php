@@ -32,9 +32,8 @@ foreach ($alloptionlist as $key => $option) {
 		}
 	}
 }
-if ($enablealbum) {
+if ($enablealbum)
 	npgFilters::register('album_filter', 'filterAlbums');
-}
 if ($enableimage) {
 	npgFilters::register('image_filter', 'filterImages');
 	npgFilters::register('upload_filetypes', 'filterImageUploads');

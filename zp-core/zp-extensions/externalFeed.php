@@ -135,9 +135,8 @@ class externalFeed_options {
 				<?php
 			}
 		}
-		if (!$count) {
-					echo gettext('No sites registered');
-		}
+		if (!$count)
+			echo gettext('No sites registered');
 	}
 
 	function handleOptionSave($themename, $themealbum) {
@@ -174,9 +173,8 @@ class ExternalFeed extends feed {
 	function __construct($options = NULL) {
 		global $_gallery, $_current_admin_obj, $_loggedin, $_gallery_page;
 		$_gallery_page = 'externalFeed.php';
-		if (empty($options)) {
-					self::feed404();
-		}
+		if (empty($options))
+			self::feed404();
 		$this->feedtype = $options['externalfeed'];
 		$this->key = @$options['accesskey'];
 		parent::__construct($options);
@@ -188,9 +186,8 @@ class ExternalFeed extends feed {
 				$this->key = NULL;
 			}
 		}
-		if (!$this->key && $this->feedtype != 'null') {
-					self::feed404();
-		}
+		if (!$this->key && $this->feedtype != 'null')
+			self::feed404();
 		// general feed setup
 		$channeltitlemode = getOption('externalFeed_title');
 		$this->host = html_encode($_SERVER["HTTP_HOST"]);
@@ -238,7 +235,7 @@ class ExternalFeed extends feed {
 
 				$this->channel_title = html_encode($this->channel_title . ' ' . getBare($albumname));
 				$this->imagesize = $this->getImageSize();
-				require_once(CORE_SERVERPATH . PLUGIN_FOLDER . '/image_album_statistics.php');
+				require_once(CORE_SERVERPATH .  PLUGIN_FOLDER . '/image_album_statistics.php');
 				break;
 
 			case 'news': //Zenpage News
@@ -264,8 +261,8 @@ class ExternalFeed extends feed {
 				$this->channel_title = html_encode($this->channel_title . $this->cattitle . $titleappendix);
 				$this->imagesize = $this->getImageSize();
 				$this->itemnumber = getOption("externalFeed_zenpage_items"); // # of Items displayed on the feed
-				require_once(CORE_SERVERPATH . PLUGIN_FOLDER . '/image_album_statistics.php');
-				require_once(CORE_SERVERPATH . PLUGIN_FOLDER . '/zenpage/template-functions.php');
+				require_once(CORE_SERVERPATH .  PLUGIN_FOLDER . '/image_album_statistics.php');
+				require_once(CORE_SERVERPATH .  PLUGIN_FOLDER . '/zenpage/template-functions.php');
 
 				break;
 
@@ -291,7 +288,7 @@ class ExternalFeed extends feed {
 						break;
 				}
 				$this->channel_title = html_encode($this->channel_title . $titleappendix);
-				require_once(CORE_SERVERPATH . PLUGIN_FOLDER . '/zenpage/template-functions.php');
+				require_once(CORE_SERVERPATH .  PLUGIN_FOLDER . '/zenpage/template-functions.php');
 				break;
 
 			case 'comments': //Comments
@@ -328,7 +325,7 @@ class ExternalFeed extends feed {
 				}
 				$this->channel_title = html_encode($this->channel_title . $title . gettext(' (latest comments)'));
 				if (extensionEnabled('zenpage')) {
-					require_once(CORE_SERVERPATH . PLUGIN_FOLDER . '/zenpage/template-functions.php');
+					require_once(CORE_SERVERPATH .  PLUGIN_FOLDER . '/zenpage/template-functions.php');
 				}
 				break;
 
@@ -521,7 +518,8 @@ class ExternalFeed extends feed {
 					<?php
 					foreach ($feeditems as $feeditem) {
 
-						switch ($this->feedtype) {
+						switch
+						($this->feedtype) {
 							case 'gallery':
 								$item = $this->getItemGallery($feeditem);
 								break;

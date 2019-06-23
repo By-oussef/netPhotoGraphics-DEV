@@ -110,12 +110,10 @@ class quota_manager {
 	 * @return string
 	 */
 	static function edit_admin($html, $userobj, $i, $background, $current, $local_alterrights) {
-		if ($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS)) {
-					return $html;
-		}
-		if (!($userobj->getRights() & UPLOAD_RIGHTS)) {
-					return $html;
-		}
+		if ($userobj->getRights() & (ADMIN_RIGHTS | MANAGE_ALL_ALBUM_RIGHTS))
+			return $html;
+		if (!($userobj->getRights() & UPLOAD_RIGHTS))
+			return $html;
 		$quota = $userobj->getQuota();
 		if ($quota == NULL) {
 			$quota = getOption('quota_default');
@@ -187,9 +185,8 @@ class quota_manager {
 			$quota = -1;
 		} else {
 			$quota = $_current_admin_obj->getQuota();
-			if ($quota == NULL) {
-							$quota = getOption('quota_default');
-			}
+			if ($quota == NULL)
+				$quota = getOption('quota_default');
 		}
 		return $quota;
 	}
@@ -282,9 +279,8 @@ class quota_manager {
 			return $types;
 		}
 		$key = array_search('ZIP', $types);
-		if ($key !== false) {
-					unset($types[$key]);
-		}
+		if ($key !== false)
+			unset($types[$key]);
 		return $types;
 	}
 

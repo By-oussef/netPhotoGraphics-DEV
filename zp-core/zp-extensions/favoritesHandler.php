@@ -49,7 +49,7 @@ $plugin_description = gettext('Support for <em>favorites</em> handling.');
 
 $option_interface = 'favoritesHandler';
 
-require_once(CORE_SERVERPATH . PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
+require_once(CORE_SERVERPATH .  PLUGIN_FOLDER . '/favoritesHandler/favoritesClass.php');
 
 class favoritesHandler {
 
@@ -232,9 +232,8 @@ class favoritesHandler {
 			setOption('favorites_image_sort_direction', $direction ? 'DESC' : '');
 		}
 		$sorttype = strtolower(sanitize($_POST['subalbumsortby'], 3));
-		if ($sorttype == 'custom') {
-					$sorttype = strtolower(sanitize($_POST['customalbumsort'], 3));
-		}
+		if ($sorttype == 'custom')
+			$sorttype = strtolower(sanitize($_POST['customalbumsort'], 3));
 		setOption('favorites_album_sort_type', $sorttype);
 		if (($sorttype == 'manual') || ($sorttype == 'random')) {
 			$direction = 0;
@@ -411,9 +410,8 @@ if (OFFSET_PATH) {
 							}
 						}
 					}
-					if ($multi || in_array(false, $seen)) {
-											favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
-					}
+					if ($multi || in_array(false, $seen))
+						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
 					break;
 				case 'albums':
 					$id = $obj->name;
@@ -429,9 +427,8 @@ if (OFFSET_PATH) {
 							}
 						}
 					}
-					if ($multi || in_array(false, $seen)) {
-											favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
-					}
+					if ($multi || in_array(false, $seen))
+						favorites::ad_removeButton($obj, $id, 1, $add, NULL, $multi);
 					break;
 				default:
 					//We do not handle these.

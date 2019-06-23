@@ -1,14 +1,12 @@
 <?php
 // force UTF-8 Ø
-if (!defined('WEBPATH') || !class_exists("CMS")) {
-	die();
-}
+if (!defined('WEBPATH') || !class_exists("CMS")) die();
 npgFilters::apply('theme_file_top')
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<?php include("inc-head.php"); ?>
+		<?php include("inc-head.php");?>
 	</head>
 	<body>
 		<?php 
@@ -16,24 +14,24 @@ npgFilters::apply('theme_file_top')
 		$commentCount = function_exists('printCommentForm') ? getCommentCount() : 0;
 		echo CommentsJS($commentCount);
 		?>
-		<div class="stage" <?php echo $stageStyle; ?>>
+		<div class="stage" <?php echo $stageStyle;?>>
 			<?php 
 			if (is_NewsArticle()) { // single news article 
 				?>
-				<div class="title border colour" <?php echo $titleStyle; ?>>
+				<div class="title border colour" <?php echo $titleStyle;?>>
 					<?php printNewsTitle(); ?>
 					<div class="newsdate">
 						<?php printNewsDate(); ?>
 					</div>
 				</div>
 				<div class="content border colour">
-					<div class="page" <?php echo $commentStyle; ?>>
+					<div class="page" <?php echo $commentStyle;?>>
 						<div class="pagetext">
-							<?php printNewsContent(); ?>
+							<?php printNewsContent();?>
 						</div>
 					</div>
 				</div>
-				<div class="imagebuttons" <?php echo $buttonStyle; ?>>
+				<div class="imagebuttons" <?php echo $buttonStyle;?>>
 					<?php 
 					if (getPrevNewsURL()) { 
 						?>
@@ -54,7 +52,7 @@ npgFilters::apply('theme_file_top')
 					if (function_exists('getHitcounter')) { 
 						?>
 						<div class="button border colour">
-							<?php echo "Views: " . getHitcounter(); ?>
+							<?php echo "Views: " . getHitcounter();?>
 						</div>
 						<?php 
 					}
@@ -88,26 +86,26 @@ npgFilters::apply('theme_file_top')
 					?>
 					<a id="readComment"></a>
 					<div class="content border colour">
-						<div class="commentbox" <?php echo $commentStyle; ?>>
+						<div class="commentbox" <?php echo $commentStyle;?>>
 							<?php printCommentForm(true, '<a id="addComment"></a>', false); ?>
 						</div>
 					</div>
 					<?php 
 				} 
 				?>
-				<div class="albumbuttons" <?php echo $buttonStyle; ?>>
+				<div class="albumbuttons" <?php echo $buttonStyle;?>>
 					<?php 
-					if (getNewsCategories()) { 
+					if(getNewsCategories()) { 
 						?>
 						<div class="button border colour">
 							<?php printNewsCategories(", ", gettext("Categories: "), "taglist"); ?>
 						</div>
 						<?php 
 					}
-					if (getTags()) {
+					if(getTags()) {
 						?>
 						<div class="button border colour">
-							<?php printTags('links', gettext('Tags: '), 'taglist', ', '); ?>
+							<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
 						</div>
 						<?php 
 					} 
@@ -118,7 +116,7 @@ npgFilters::apply('theme_file_top')
 			} else {
 				if (getNextNewsPageURL() || getPrevNewsPageURL()) { 
 					?>
-					<div class="buttons" <?php echo $buttonStyle; ?>>
+					<div class="buttons" <?php echo $buttonStyle;?>>
 						<div class="button border colour">
 							<?php printNewsPageListWithNav(gettext('Next'), gettext('Prev'), true, 'taglist', true); ?>
 						</div>
@@ -128,21 +126,21 @@ npgFilters::apply('theme_file_top')
 				}
 				while (next_news()) {  // news article loop 
 					?>
-					<div class="title border colour" <?php echo $titleStyle; ?>>
+					<div class="title border colour" <?php echo $titleStyle;?>>
 						<div class="newslink">
-							<?php printNewsURL(); ?>
+							<?php printNewsURL();?>
 						</div>
 						<div class="newsdate">
 							<?php printNewsDate(); ?>
 						</div>
-						<?php printNewsContent(); ?>
+						<?php printNewsContent();?>
 					</div>
-					<div class="albumbuttons" <?php echo $buttonStyle; ?>>
+					<div class="albumbuttons" <?php echo $buttonStyle;?>>
 						<?php 
 						if (function_exists('getHitcounter')) { 
 							?>
 							<div class="button border colour">
-								<?php echo "Views: " . getHitcounter(); ?>
+								<?php echo "Views: " . getHitcounter();?>
 							</div>
 							<?php 
 						}
@@ -159,14 +157,14 @@ npgFilters::apply('theme_file_top')
 							</div>
 							<?php 
 						}
-						if (getTags()) {
+						if(getTags()) {
 							?>
 							<div class="button border colour">
-								<?php printTags('links', gettext('Tags: '), 'taglist', ', '); ?>
+								<?php printTags('links', gettext('Tags: '), 'taglist', ', ');?>
 							</div>
 							<?php 
 						}
-						if (getNewsCategories()) { 
+						if(getNewsCategories()) { 
 							?>
 							<div class="button border colour">
 								<?php printNewsCategories(", ", gettext("Categories: "), "taglist"); ?>
@@ -181,7 +179,7 @@ npgFilters::apply('theme_file_top')
 			} 
 			?>
 		</div>
-		<?php include("inc-footer.php"); ?>
+		<?php include("inc-footer.php");?>
 	</body>
 </html>
 <?php

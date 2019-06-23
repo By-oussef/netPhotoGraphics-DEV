@@ -314,9 +314,8 @@ class Category extends CMSRoot {
 				return $authType;
 			} else {
 				$user = $this->getUser();
-				if (!empty($user)) {
-									$show = true;
-				}
+				if (!empty($user))
+					$show = true;
 				$hint = $this->getPasswordHint();
 				return false;
 			}

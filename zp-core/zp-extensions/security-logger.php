@@ -249,14 +249,12 @@ class security_logger {
 			case 'all':
 				break;
 			case 'success':
-				if (!$success) {
-									return false;
-				}
+				if (!$success)
+					return false;
 				break;
 			case 'fail':
-				if ($success) {
-									return true;
-				}
+				if ($success)
+					return true;
 				break;
 		}
 		$name = '';
@@ -300,14 +298,12 @@ class security_logger {
 			case 'all':
 				break;
 			case 'success':
-				if (!$success) {
-									return false;
-				}
+				if (!$success)
+					return false;
 				break;
 			case 'fail':
-				if ($success) {
-									return true;
-				}
+				if ($success)
+					return true;
 				break;
 		}
 		$name = '';
@@ -334,9 +330,8 @@ class security_logger {
 				case 'all':
 					break;
 				case 'all_user':
-					if (!$user) {
-											return $allow;
-					}
+					if (!$user)
+						return $allow;
 					break;
 			}
 			security_logger::logger(0, $user, $name, 'blocked_access', '', getRequestURI());
@@ -366,14 +361,12 @@ class security_logger {
 			case 'all':
 				break;
 			case 'all_user':
-				if (!$user) {
-									return $allow;
-				}
+				if (!$user)
+					return $allow;
 				break;
 		}
-		if (!$allow) {
-					security_logger::logger(2, $user, $name, 'blocked_album', '', getRequestURI());
-		}
+		if (!$allow)
+			security_logger::logger(2, $user, $name, 'blocked_album', '', getRequestURI());
 		return $allow;
 	}
 

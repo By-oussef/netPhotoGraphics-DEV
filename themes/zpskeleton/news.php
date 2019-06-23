@@ -85,10 +85,7 @@
 		</div>
 		<div class="five columns offset-by-one sidebar">
 			<?php if (is_NewsArticle()) { ?>
-				<?php if ($zpskel_social) {
-	include ("inc-social.php");
-}
-?>
+				<?php if ($zpskel_social) include ("inc-social.php"); ?>
 				<?php printNewsExtraContent(); ?>
 
 				<div class="news-nav">

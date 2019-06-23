@@ -1,8 +1,7 @@
 <?php
 // force UTF-8 Ø
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 if (class_exists('CMS')) {
 	?>
 	<!DOCTYPE html>

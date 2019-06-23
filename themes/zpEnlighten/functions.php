@@ -7,9 +7,8 @@ class Utils {
 	}
 
 	static function getLatestImages($limit = 2) {
-		if (!isset($limit) || !is_numeric($limit)) {
-					$limit = 3;
-		}
+		if (!isset($limit) || !is_numeric($limit))
+			$limit = 3;
 		$t_images = prefix("images");
 		$t_albums = prefix("albums");
 		$query = "SELECT i.id, i.filename, i.title, a.folder FROM $t_images i " .
@@ -140,9 +139,8 @@ function newsOnIndex($link, $obj, $page) {
 		if (MOD_REWRITE) {
 			if (preg_match('~' . _NEWS_ . '[/\d/]*$~', $link)) {
 				$link = WEBPATH;
-				if ($page > 1) {
-									$link .= '/' . _PAGE_ . '/' . $page;
-				}
+				if ($page > 1)
+					$link .= '/' . _PAGE_ . '/' . $page;
 			}
 		} else {
 			if (strpos($link, 'category=') === false && strpos($link, 'title=') === false) {

@@ -124,9 +124,8 @@ if (!empty($_REQUEST['themealbum'])) {
 	$current_theme = $themename;
 } else {
 	$current_theme = $galleryTheme;
-	foreach ($themelist as $albumtitle => $alb) {
-			break;
-	}
+	foreach ($themelist as $albumtitle => $alb)
+		break;
 	if (empty($alb)) {
 		$themename = $_gallery->getCurrentTheme();
 	} else {

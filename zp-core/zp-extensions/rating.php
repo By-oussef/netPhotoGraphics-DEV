@@ -104,10 +104,7 @@ class jquery_rating {
 		switch ($option) {
 			case 'rating_like':
 				?>
-				<input type="checkbox" id="__rating_like" name="rating_like-dislike" value="1"<?php if (getOption('rating_like-dislike')) {
-	echo ' checked="checked"';
-}
-?> onclick="ratinglikebox();"/>
+				<input type="checkbox" id="__rating_like" name="rating_like-dislike" value="1"<?php if (getOption('rating_like-dislike')) echo ' checked="checked"'; ?> onclick="ratinglikebox();"/>
 				<?php
 				break;
 			case 'rating_js':
@@ -154,8 +151,8 @@ class jquery_rating {
 
 	static function ratingJS() {
 		$ME = substr(basename(__FILE__), 0, -4);
-		scriptLoader(CORE_SERVERPATH . PLUGIN_FOLDER . '/' . $ME . '/jquery.MetaData.js');
-		scriptLoader(CORE_SERVERPATH . PLUGIN_FOLDER . '/' . $ME . '/jquery.rating.js');
+		scriptLoader(CORE_SERVERPATH .  PLUGIN_FOLDER . '/' . $ME . '/jquery.MetaData.js');
+		scriptLoader(CORE_SERVERPATH .  PLUGIN_FOLDER . '/' . $ME . '/jquery.rating.js');
 
 		$size = getOption('rating_star_size');
 		if (getOption('rating_like-dislike')) {
@@ -390,10 +387,7 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 		?>
 	</form>
 	<span class="clearall" ></span>
-	<span class="vote" id="vote<?php echo $unique; ?>" <?php if (!$text) {
-	echo 'style="display:none;"';
-}
-?>>
+	<span class="vote" id="vote<?php echo $unique; ?>" <?php if (!$text) echo 'style="display:none;"'; ?>>
 		<?php echo $msg; ?>
 	</span>
 	<script type="text/javascript">
@@ -457,9 +451,8 @@ function printRating($vote = 3, $object = NULL, $text = true) {
 function getRating($object = NULL) {
 	if (is_null($object)) {
 		$object = jquery_rating::getCurrentPageObject();
-		if (!$object) {
-					return NULL;
-		}
+		if (!$object)
+			return NULL;
 	}
 	return $object->get('rating');
 }

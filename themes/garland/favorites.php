@@ -1,7 +1,6 @@
 <?php
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 if (class_exists('favorites')) {
 	?>
 	<!DOCTYPE html>
@@ -12,9 +11,8 @@ if (class_exists('favorites')) {
 
 			scriptLoader($_themeroot . '/zen.css');
 
-			if (class_exists('RSS')) {
-							printRSSHeaderLink('Album', getAlbumTitle());
-			}
+			if (class_exists('RSS'))
+				printRSSHeaderLink('Album', getAlbumTitle());
 			?>
 		</head>
 		<body class="sidebars">

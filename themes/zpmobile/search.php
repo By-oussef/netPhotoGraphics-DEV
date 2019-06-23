@@ -1,7 +1,6 @@
 <?php
-if (!defined('WEBPATH')) {
+if (!defined('WEBPATH'))
 	die();
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -184,9 +183,8 @@ if (!defined('WEBPATH')) {
 						<br class="clearall">
 					<?php } ?>
 					<?php
-					if (function_exists('printSlideShowLink')) {
-											printSlideShowLink(gettext('View Slideshow'));
-					}
+					if (function_exists('printSlideShowLink'))
+						printSlideShowLink(gettext('View Slideshow'));
 					if ($total == 0) {
 						echo "<p>" . gettext("Sorry, no matches found. Try refining your search.") . "</p>";
 					}

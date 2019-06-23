@@ -6,13 +6,11 @@ $numalbums = getNumAlbums();
 $total = $numimages + $numalbums;
 if ($zenpage && !isArchive()) {
 	$numpages = getNumPages();
-	if ($numpages > $zpmin_zpsearchcount) {
-			$numpages = $zpmin_zpsearchcount;
-	}
+	if ($numpages > $zpmin_zpsearchcount)
+		$numpages = $zpmin_zpsearchcount;
 	$numnews = getNumNews();
-	if ($numnews > $zpmin_zpsearchcount) {
-			$numnews = $zpmin_zpsearchcount;
-	}
+	if ($numnews > $zpmin_zpsearchcount)
+		$numnews = $zpmin_zpsearchcount;
 	$total = $total + $numnews + $numpages;
 } else {
 	$numpages = $numnews = 0;
@@ -32,10 +30,7 @@ if (!empty($searchdate)) {
 </div>
 </div> <!-- close #header -->
 <div id="content">
-	<div id="main"<?php if ($zpmin_switch) {
-	echo ' class="switch"';
-}
-?>>
+	<div id="main"<?php if ($zpmin_switch) echo ' class="switch"'; ?>>
 		<div id="albums-wrap">
 			<?php
 			$c = 0;
@@ -114,10 +109,7 @@ if (!empty($searchdate)) {
 		}
 		?>
 	</div>
-	<div id="sidebar"<?php if ($zpmin_switch) {
-	echo ' class="switch"';
-}
-?>>
+	<div id="sidebar"<?php if ($zpmin_switch) echo ' class="switch"'; ?>>
 		<div class="sidebar-divide">
 			<?php printGalleryDesc(true); ?>
 			<?php if (($c > 0) && (function_exists('printSlideShowLink'))) { ?><div class="sidebar-section"><div class="slideshow-link"><?php printSlideShowLink(gettext('View Slideshow')); ?></div></div><?php } ?>

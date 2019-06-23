@@ -24,9 +24,8 @@ class Controller {
 					$redirectURL = _NEWS_;
 					if (isset($query['category'])) {
 						$obj = newCategory(trim($query['category'], '/'), false);
-						if (!$obj->loaded) {
-													return '';
-						}
+						if (!$obj->loaded)
+							return '';
 						$redirectURL = $obj->getLink();
 						unset($query['category']);
 					} else if (isset($query['date'])) {
@@ -35,9 +34,8 @@ class Controller {
 					}
 					if (isset($query['title'])) {
 						$obj = newArticle(trim($query['title'], '/'), false);
-						if (!$obj->loaded) {
-													return '';
-						}
+						if (!$obj->loaded)
+							return '';
 						$redirectURL = $obj->getLink();
 						unset($query['title']);
 					}
@@ -45,9 +43,8 @@ class Controller {
 				case 'pages':
 					if (isset($query['title'])) {
 						$obj = newPage(trim($query['title'], '/'), false);
-						if (!$obj->loaded) {
-													return '';
-						}
+						if (!$obj->loaded)
+							return '';
 						$redirectURL = $obj->getLink();
 						unset($query['title']);
 					}
@@ -85,9 +82,8 @@ class Controller {
 			} else {
 				$obj = newAlbum($query['album'], NULL, true);
 			}
-			if (is_object($obj) && !$obj->exists) {
-							return '';
-			}
+			if (is_object($obj) && !$obj->exists)
+				return '';
 
 			unset($query['album']);
 			$redirectURL = preg_replace('~^' . WEBPATH . '/~', '', $obj->getLink(@$query['page']));

@@ -95,9 +95,8 @@ function printUserSizeSelector($text = '', $default = NULL, $usersizes = NULL) {
 		$current = $width . 'x' . $height;
 	}
 	$sizes = array();
-	if (empty($text)) {
-			$text = gettext('Select image size');
-	}
+	if (empty($text))
+		$text = gettext('Select image size');
 	if (is_null($usersizes)) {
 		$inputs = explode(';', trim(getOption('viewer_size_image_sizes')));
 		if (!empty($inputs)) {
@@ -134,9 +133,8 @@ function printUserSizeSelector($text = '', $default = NULL, $usersizes = NULL) {
 			}
 		}
 	}
-	if (($cookiepath = WEBPATH) == '') {
-			$cookiepath = '/';
-	}
+	if (($cookiepath = WEBPATH) == '')
+		$cookiepath = '/';
 	?>
 	<script type="text/javascript">
 		// <!-- <![CDATA[
