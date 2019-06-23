@@ -90,8 +90,10 @@ function formatCanonData($type, $tag, $intel, $data, $exif, &$result) {
 		if ($tag == "0001") { //first chunk
 			$result['Bytes'] = hexdec(intel2Moto(substr($data, $place, 4)));
 			$place += 4; //0
-			if ($result['Bytes'] != strlen($data) / 2)
-				return $result; //Bad chunk
+			if ($result['Bytes'] != strlen($data) / 2) {
+							return $result;
+			}
+			//Bad chunk
 			$result['Macro'] = hexdec(intel2Moto(substr($data, $place, 4)));
 			$place += 4; //1
 			switch ($result['Macro']) {
@@ -396,8 +398,10 @@ function formatCanonData($type, $tag, $intel, $data, $exif, &$result) {
 		} else if ($tag == "0004") { //second chunk
 			$result['Bytes'] = hexdec(intel2Moto(substr($data, $place, 4)));
 			$place += 4; //0
-			if ($result['Bytes'] != strlen($data) / 2)
-				return $result; //Bad chunk
+			if ($result['Bytes'] != strlen($data) / 2) {
+							return $result;
+			}
+			//Bad chunk
 			$result['Unknown'] = hexdec(intel2Moto(substr($data, $place, 4)));
 			$place += 4; //1
 			$result['Unknown'] = hexdec(intel2Moto(substr($data, $place, 4)));
@@ -563,18 +567,20 @@ function formatCanonData($type, $tag, $intel, $data, $exif, &$result) {
 function parseCanon($block, &$result, $seek, $globalOffset) {
 	$place = 0; //current place
 
-	if ($result['Endien'] == "Intel")
-		$intel = 1;
-	else
-		$intel = 0;
+	if ($result['Endien'] == "Intel") {
+			$intel = 1;
+	} else {
+			$intel = 0;
+	}
 
 	$model = $result['IFD0']['Model'];
 
 //Get number of tags (2 bytes)
 	$num = bin2hex(substr($block, $place, 2));
 	$place += 2;
-	if ($intel == 1)
-		$num = intel2Moto($num);
+	if ($intel == 1) {
+			$num = intel2Moto($num);
+	}
 	$result['SubIFD']['MakerNote']['MakerNoteNumTags'] = hexdec($num);
 
 //loop thru all tags  Each field is 12 bytes
@@ -583,22 +589,25 @@ function parseCanon($block, &$result, $seek, $globalOffset) {
 //2 byte tag
 		$tag = bin2hex(substr($block, $place, 2));
 		$place += 2;
-		if ($intel == 1)
-			$tag = intel2Moto($tag);
+		if ($intel == 1) {
+					$tag = intel2Moto($tag);
+		}
 		$tag_name = lookup_Canon_tag($tag);
 
 //2 byte type
 		$type = bin2hex(substr($block, $place, 2));
 		$place += 2;
-		if ($intel == 1)
-			$type = intel2Moto($type);
+		if ($intel == 1) {
+					$type = intel2Moto($type);
+		}
 		lookup_type($type, $size);
 
 //4 byte count of number of data units
 		$count = bin2hex(substr($block, $place, 4));
 		$place += 4;
-		if ($intel == 1)
-			$count = intel2Moto($count);
+		if ($intel == 1) {
+					$count = intel2Moto($count);
+		}
 		$bytesofdata = validSize($size * hexdec($count));
 		if ($bytesofdata <= 0) {
 			return; //if this value is 0 or less then we have read all the tags we can

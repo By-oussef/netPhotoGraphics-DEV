@@ -3103,8 +3103,9 @@ class PclZip {
 		$this->privDisableMagicQuotes();
 
 		// ----- Check the path
-		if (($p_path == "") || ((substr($p_path, 0, 1) != "/") && (substr($p_path, 0, 3) != "../") && (substr($p_path, 1, 2) != ":/")))
-			$p_path = "./" . $p_path;
+		if (($p_path == "") || ((substr($p_path, 0, 1) != "/") && (substr($p_path, 0, 3) != "../") && (substr($p_path, 1, 2) != ":/"))) {
+					$p_path = "./" . $p_path;
+		}
 
 		// ----- Reduce the path last (and duplicated) '/'
 		if (($p_path != "./") && ($p_path != "/")) {

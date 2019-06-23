@@ -75,22 +75,22 @@ class elFinderPluginWatermark extends elFinderPlugin
 	public function __construct($opts)
 	{
 		$defaults = array(
-			'enable' => true,       // For control by volume driver
+			'enable' => true, // For control by volume driver
 			'source' => 'logo.png', // Path to Water mark image
-			'ratio' => 0.2,        // Ratio to original image (ratio > 0 and ratio <= 1)
-			'position' => 'RB',       // Position L(eft)/C(enter)/R(ight) and T(op)/M(edium)/B(ottom)
-			'marginX' => 5,          // Margin horizontal pixel
-			'marginY' => 5,          // Margin vertical pixel
-			'quality' => 95,         // JPEG image save quality
-			'transparency' => 70,         // Water mark image transparency ( other than PNG )
+			'ratio' => 0.2, // Ratio to original image (ratio > 0 and ratio <= 1)
+			'position' => 'RB', // Position L(eft)/C(enter)/R(ight) and T(op)/M(edium)/B(ottom)
+			'marginX' => 5, // Margin horizontal pixel
+			'marginY' => 5, // Margin vertical pixel
+			'quality' => 95, // JPEG image save quality
+			'transparency' => 70, // Water mark image transparency ( other than PNG )
 			'targetType' => IMG_GIF | IMG_JPG | IMG_PNG | IMG_WBMP, // Target image formats ( bit-field )
-			'targetMinPixel' => 200,        // Target image minimum pixel size
+			'targetMinPixel' => 200, // Target image minimum pixel size
 			'interlace' => IMG_GIF | IMG_JPG, // Set interlacebit image formats ( bit-field )
-			'offDropWith' => null,       // To disable it if it is dropped with pressing the meta key
+			'offDropWith' => null, // To disable it if it is dropped with pressing the meta key
 			// Alt: 8, Ctrl: 4, Meta: 2, Shift: 1 - sum of each value
 			// In case of using any key, specify it as an array
-			'marginRight' => 0,          // Deprecated - marginX should be used
-			'marginBottom' => 0,          // Deprecated - marginY should be used
+			'marginRight' => 0, // Deprecated - marginX should be used
+			'marginBottom' => 0, // Deprecated - marginY should be used
 			'disableWithContentSaveId' => true // Disable on URL upload with post data "contentSaveId"
 		);
 

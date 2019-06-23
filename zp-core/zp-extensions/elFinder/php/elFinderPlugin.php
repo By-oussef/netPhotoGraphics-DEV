@@ -67,12 +67,12 @@ class elFinderPlugin
 			// plugin disabled by default, enabled only if given key is pressed
 			if (isset($_REQUEST['dropWith']) && $_REQUEST['dropWith']) {
 				$onDropWith = $opts['onDropWith'];
-				$action = (int)$_REQUEST['dropWith'];
+				$action = (int) $_REQUEST['dropWith'];
 				if (!is_array($onDropWith)) {
 					$onDropWith = array($onDropWith);
 				}
 				foreach ($onDropWith as $key) {
-					$key = (int)$key;
+					$key = (int) $key;
 					if (($action & $key) === $key) {
 						return true;
 					}
@@ -84,13 +84,13 @@ class elFinderPlugin
 		if (isset($opts['offDropWith']) && !is_null($opts['offDropWith']) && isset($_REQUEST['dropWith'])) {
 			// plugin enabled by default, disabled only if given key is pressed
 			$offDropWith = $opts['offDropWith'];
-			$action = (int)$_REQUEST['dropWith'];
+			$action = (int) $_REQUEST['dropWith'];
 			if (!is_array($offDropWith)) {
 				$offDropWith = array($offDropWith);
 			}
 			$res = true;
 			foreach ($offDropWith as $key) {
-				$key = (int)$key;
+				$key = (int) $key;
 				if ($key === 0) {
 					if ($action === 0) {
 						$res = false;

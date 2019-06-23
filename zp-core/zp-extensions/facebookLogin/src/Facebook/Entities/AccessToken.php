@@ -252,7 +252,7 @@ class AccessToken
 		$expiresAt = isset($data['expires']) ? time() + $data['expires'] : 0;
 		return new static($data['access_token'], $expiresAt);
 	  }
-	} elseif($data instanceof \stdClass) {
+	} elseif ($data instanceof \stdClass) {
 	  if (isset($data->access_token)) {
 		$expiresAt = isset($data->expires_in) ? time() + $data->expires_in : 0;
 		$machineId = isset($data->machine_id) ? (string) $data->machine_id : null;

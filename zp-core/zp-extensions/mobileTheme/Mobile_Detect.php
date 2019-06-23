@@ -27,51 +27,51 @@ class Mobile_Detect
 	 *
 	 * @deprecated since version 2.6.9
 	 */
-	const DETECTION_TYPE_MOBILE     = 'mobile';
+	const DETECTION_TYPE_MOBILE = 'mobile';
 
 	/**
 	 * Extended detection type.
 	 *
 	 * @deprecated since version 2.6.9
 	 */
-	const DETECTION_TYPE_EXTENDED   = 'extended';
+	const DETECTION_TYPE_EXTENDED = 'extended';
 
 	/**
 	 * A frequently used regular expression to extract version #s.
 	 *
 	 * @deprecated since version 2.6.9
 	 */
-	const VER                       = '([\w._\+]+)';
+	const VER = '([\w._\+]+)';
 
 	/**
 	 * Top-level device.
 	 */
-	const MOBILE_GRADE_A            = 'A';
+	const MOBILE_GRADE_A = 'A';
 
 	/**
 	 * Mid-level device.
 	 */
-	const MOBILE_GRADE_B            = 'B';
+	const MOBILE_GRADE_B = 'B';
 
 	/**
 	 * Low-level device.
 	 */
-	const MOBILE_GRADE_C            = 'C';
+	const MOBILE_GRADE_C = 'C';
 
 	/**
 	 * Stores the version number of the current release.
 	 */
-	const VERSION                   = '2.8.33';
+	const VERSION = '2.8.33';
 
 	/**
 	 * A type for the version() method indicating a string return value.
 	 */
-	const VERSION_TYPE_STRING       = 'text';
+	const VERSION_TYPE_STRING = 'text';
 
 	/**
 	 * A type for the version() method indicating a float return value.
 	 */
-	const VERSION_TYPE_FLOAT        = 'float';
+	const VERSION_TYPE_FLOAT = 'float';
 
 	/**
 	 * A cache for resolved matches
@@ -628,10 +628,10 @@ class Mobile_Detect
 		// http://en.wikipedia.org/wiki/NetFront
 		'NetFront'      => 'NetFront/[VER]',
 		'NokiaBrowser'  => 'NokiaBrowser/[VER]',
-		'Opera'         => array( ' OPR/[VER]', 'Opera Mini/[VER]', 'Version/[VER]' ),
+		'Opera'         => array(' OPR/[VER]', 'Opera Mini/[VER]', 'Version/[VER]'),
 		'Opera Mini'    => 'Opera Mini/[VER]',
 		'Opera Mobi'    => 'Version/[VER]',
-		'UCBrowser'    => array( 'UCWEB[VER]', 'UC.*Browser/[VER]' ),
+		'UCBrowser'    => array('UCWEB[VER]', 'UC.*Browser/[VER]'),
 		'MQQBrowser'    => 'MQQBrowser/[VER]',
 		'MicroMessenger' => 'MicroMessenger/[VER]',
 		'baiduboxapp'   => 'baiduboxapp/[VER]',
@@ -640,7 +640,7 @@ class Mobile_Detect
 		'Iron'          => 'Iron/[VER]',
 		// @note: Safari 7534.48.3 is actually Version 5.1.
 		// @note: On BlackBerry the Version is overwriten by the OS.
-		'Safari'        => array( 'Version/[VER]', 'Safari/[VER]' ),
+		'Safari'        => array('Version/[VER]', 'Safari/[VER]'),
 		'Skyfire'       => 'Skyfire/[VER]',
 		'Tizen'         => 'Tizen/[VER]',
 		'Webkit'        => 'webkit[ /][VER]',
@@ -660,7 +660,7 @@ class Mobile_Detect
 		'Java'             => 'Java/[VER]',
 		// @reference: http://windowsteamblog.com/windows_phone/b/wpdev/archive/2011/08/29/introducing-the-ie9-on-windows-phone-mango-user-agent-string.aspx
 		// @reference: http://en.wikipedia.org/wiki/Windows_NT#Releases
-		'Windows Phone OS' => array( 'Windows Phone OS [VER]', 'Windows Phone [VER]'),
+		'Windows Phone OS' => array('Windows Phone OS [VER]', 'Windows Phone [VER]'),
 		'Windows Phone'    => 'Windows Phone [VER]',
 		'Windows CE'       => 'Windows CE/[VER]',
 		// http://social.msdn.microsoft.com/Forums/en-US/windowsdeveloperpreviewgeneral/thread/6be392da-4d2f-41b4-8354-8dcee20c85cd
@@ -1163,7 +1163,7 @@ class Mobile_Detect
 		// Check specifically for cloudfront headers if the useragent === 'Amazon CloudFront'
 		if ($this->getUserAgent() === 'Amazon CloudFront') {
 			$cfHeaders = $this->getCfHeaders();
-			if(array_key_exists('HTTP_CLOUDFRONT_IS_MOBILE_VIEWER', $cfHeaders) && $cfHeaders['HTTP_CLOUDFRONT_IS_MOBILE_VIEWER'] === 'true') {
+			if (array_key_exists('HTTP_CLOUDFRONT_IS_MOBILE_VIEWER', $cfHeaders) && $cfHeaders['HTTP_CLOUDFRONT_IS_MOBILE_VIEWER'] === 'true') {
 				return true;
 			}
 		}
@@ -1191,7 +1191,7 @@ class Mobile_Detect
 		// Check specifically for cloudfront headers if the useragent === 'Amazon CloudFront'
 		if ($this->getUserAgent() === 'Amazon CloudFront') {
 			$cfHeaders = $this->getCfHeaders();
-			if(array_key_exists('HTTP_CLOUDFRONT_IS_TABLET_VIEWER', $cfHeaders) && $cfHeaders['HTTP_CLOUDFRONT_IS_TABLET_VIEWER'] === 'true') {
+			if (array_key_exists('HTTP_CLOUDFRONT_IS_TABLET_VIEWER', $cfHeaders) && $cfHeaders['HTTP_CLOUDFRONT_IS_TABLET_VIEWER'] === 'true') {
 				return true;
 			}
 		}
@@ -1363,7 +1363,7 @@ class Mobile_Detect
 			// Android 3.1 (Honeycomb)  - Tested on the Samsung Galaxy Tab 10.1 and Motorola XOOM
 			// Android 4.0 (ICS)  - Tested on a Galaxy Nexus. Note: transition performance can be poor on upgraded devices
 			// Android 4.1 (Jelly Bean)  - Tested on a Galaxy Nexus and Galaxy 7
-			( $this->version('Android', self::VERSION_TYPE_FLOAT)>2.1 && $this->is('Webkit') ) ||
+			($this->version('Android', self::VERSION_TYPE_FLOAT) > 2.1 && $this->is('Webkit')) ||
 
 			// Windows Phone 7.5-8 - Tested on the HTC Surround (7.5), HTC Trophy (7.5), LG-E900 (7.5), Nokia 800 (7.8), HTC Mazaa (7.8), Nokia Lumia 520 (8), Nokia Lumia 920 (8), HTC 8x (8)
 			$this->version('Windows Phone OS', self::VERSION_TYPE_FLOAT) >= 7.5 ||
@@ -1374,21 +1374,21 @@ class Mobile_Detect
 			$this->match('Playbook.*Tablet') ||
 
 			// Palm WebOS (1.4-3.0) - Tested on the Palm Pixi (1.4), Pre (1.4), Pre 2 (2.0), HP TouchPad (3.0)
-			( $this->version('webOS', self::VERSION_TYPE_FLOAT) >= 1.4 && $this->match('Palm|Pre|Pixi') ) ||
+			($this->version('webOS', self::VERSION_TYPE_FLOAT) >= 1.4 && $this->match('Palm|Pre|Pixi')) ||
 			// Palm WebOS 3.0  - Tested on HP TouchPad
 			$this->match('hp.*TouchPad') ||
 
 			// Firefox Mobile 18 - Tested on Android 2.3 and 4.1 devices
-			( $this->is('Firefox') && $this->version('Firefox', self::VERSION_TYPE_FLOAT) >= 18 ) ||
+			($this->is('Firefox') && $this->version('Firefox', self::VERSION_TYPE_FLOAT) >= 18) ||
 
 			// Chrome for Android - Tested on Android 4.0, 4.1 device
-			( $this->is('Chrome') && $this->is('AndroidOS') && $this->version('Android', self::VERSION_TYPE_FLOAT) >= 4.0 ) ||
+			($this->is('Chrome') && $this->is('AndroidOS') && $this->version('Android', self::VERSION_TYPE_FLOAT) >= 4.0) ||
 
 			// Skyfire 4.1 - Tested on Android 2.3 device
-			( $this->is('Skyfire') && $this->version('Skyfire', self::VERSION_TYPE_FLOAT) >= 4.1 && $this->is('AndroidOS') && $this->version('Android', self::VERSION_TYPE_FLOAT) >= 2.3 ) ||
+			($this->is('Skyfire') && $this->version('Skyfire', self::VERSION_TYPE_FLOAT) >= 4.1 && $this->is('AndroidOS') && $this->version('Android', self::VERSION_TYPE_FLOAT) >= 2.3) ||
 
 			// Opera Mobile 11.5-12: Tested on Android 2.3
-			( $this->is('Opera') && $this->version('Opera Mobi', self::VERSION_TYPE_FLOAT) >= 11.5 && $this->is('AndroidOS') ) ||
+			($this->is('Opera') && $this->version('Opera Mobi', self::VERSION_TYPE_FLOAT) >= 11.5 && $this->is('AndroidOS')) ||
 
 			// Meego 1.2 - Tested on Nokia 950 and N9
 			$this->is('MeeGoOS') ||
@@ -1401,11 +1401,11 @@ class Mobile_Detect
 			$this->is('Dolfin') && $this->version('Bada', self::VERSION_TYPE_FLOAT) >= 2.0 ||
 
 			// UC Browser - Tested on Android 2.3 device
-			( ($this->is('UC Browser') || $this->is('Dolfin')) && $this->version('Android', self::VERSION_TYPE_FLOAT) >= 2.3 ) ||
+			(($this->is('UC Browser') || $this->is('Dolfin')) && $this->version('Android', self::VERSION_TYPE_FLOAT) >= 2.3) ||
 
 			// Kindle 3 and Fire  - Tested on the built-in WebKit browser for each
-			( $this->match('Kindle Fire') ||
-			$this->is('Kindle') && $this->version('Kindle', self::VERSION_TYPE_FLOAT) >= 3.0 ) ||
+			($this->match('Kindle Fire') ||
+			$this->is('Kindle') && $this->version('Kindle', self::VERSION_TYPE_FLOAT) >= 3.0) ||
 
 			// Nook Color 1.4.1 - Tested on original Nook Color, not Nook Tablet
 			$this->is('AndroidOS') && $this->is('NookTablet') ||
@@ -1424,28 +1424,28 @@ class Mobile_Detect
 
 			// Opera Desktop 10-12 - Tested on OS X 10.7 and Windows 7
 			$this->version('Opera', self::VERSION_TYPE_FLOAT) >= 10 && !$isMobile
-		){
+		) {
 			return self::MOBILE_GRADE_A;
 		}
 
 		if (
-			$this->is('iOS') && $this->version('iPad', self::VERSION_TYPE_FLOAT)<4.3 ||
-			$this->is('iOS') && $this->version('iPhone', self::VERSION_TYPE_FLOAT)<4.3 ||
-			$this->is('iOS') && $this->version('iPod', self::VERSION_TYPE_FLOAT)<4.3 ||
+			$this->is('iOS') && $this->version('iPad', self::VERSION_TYPE_FLOAT) < 4.3 ||
+			$this->is('iOS') && $this->version('iPhone', self::VERSION_TYPE_FLOAT) < 4.3 ||
+			$this->is('iOS') && $this->version('iPod', self::VERSION_TYPE_FLOAT) < 4.3 ||
 
 			// Blackberry 5.0: Tested on the Storm 2 9550, Bold 9770
-			$this->is('Blackberry') && $this->version('BlackBerry', self::VERSION_TYPE_FLOAT) >= 5 && $this->version('BlackBerry', self::VERSION_TYPE_FLOAT)<6 ||
+			$this->is('Blackberry') && $this->version('BlackBerry', self::VERSION_TYPE_FLOAT) >= 5 && $this->version('BlackBerry', self::VERSION_TYPE_FLOAT) < 6 ||
 
 			//Opera Mini (5.0-6.5) - Tested on iOS 3.2/4.3 and Android 2.3
 			($this->version('Opera Mini', self::VERSION_TYPE_FLOAT) >= 5.0 && $this->version('Opera Mini', self::VERSION_TYPE_FLOAT) <= 7.0 &&
-			($this->version('Android', self::VERSION_TYPE_FLOAT) >= 2.3 || $this->is('iOS')) ) ||
+			($this->version('Android', self::VERSION_TYPE_FLOAT) >= 2.3 || $this->is('iOS'))) ||
 
 			// Nokia Symbian^3 - Tested on Nokia N8 (Symbian^3), C7 (Symbian^3), also works on N97 (Symbian^1)
 			$this->match('NokiaN8|NokiaC7|N97.*Series60|Symbian/3') ||
 
 			// @todo: report this (tested on Nokia N71)
 			$this->version('Opera Mobi', self::VERSION_TYPE_FLOAT) >= 11 && $this->is('SymbianOS')
-		){
+		) {
 			return self::MOBILE_GRADE_B;
 		}
 
@@ -1462,7 +1462,7 @@ class Mobile_Detect
 
 			// Internet Explorer 7 and older - Tested on Windows XP
 			$this->version('IE', self::VERSION_TYPE_FLOAT) <= 7.0 && !$isMobile
-		){
+		) {
 			return self::MOBILE_GRADE_C;
 		}
 

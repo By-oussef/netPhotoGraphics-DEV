@@ -286,7 +286,7 @@ class FacebookRedirectLoginHelper
 	  if ($fp !== FALSE) {
 		$buf = fread($fp, $bytes);
 		fclose($fp);
-		if($buf !== FALSE) {
+		if ($buf !== FALSE) {
 		  return bin2hex($buf);
 		}
 	  }

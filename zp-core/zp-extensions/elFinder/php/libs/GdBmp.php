@@ -345,7 +345,7 @@ class elFinderLibGdBmp
 			if ($compression == 1 || $compression == 2) {
 				$x = 0;
 				$qrt_mod2 = $bit_count >> 2 & 1;
-				for (; ;) {
+				for (;;) {
 					//もし描写先が範囲外になっている場合デコード処理がおかしくなっているので抜ける
 					//変なデータが渡されたとしても最悪なケースで255回程度の無駄なので目を瞑る
 					if ($x < -1 || $x > $width || $y < -1 || $y > $height) {

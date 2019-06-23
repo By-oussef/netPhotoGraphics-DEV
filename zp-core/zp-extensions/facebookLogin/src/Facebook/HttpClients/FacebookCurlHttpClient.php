@@ -300,7 +300,7 @@ class FacebookCurlHttpClient implements FacebookHttpable
 	$headerSize = self::$facebookCurl->getinfo(CURLINFO_HEADER_SIZE);
 	// This corrects a Curl bug where header size does not account
 	// for additional Proxy headers.
-	if ( self::needsCurlProxyFix() ) {
+	if (self::needsCurlProxyFix()) {
 	  // Additional way to calculate the request body size.
 	  if (preg_match('/Content-Length: (\d+)/', $this->rawResponse, $m)) {
 		  $headerSize = mb_strlen($this->rawResponse) - $m[1];

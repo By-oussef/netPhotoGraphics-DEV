@@ -304,8 +304,9 @@ class elFinderConnector
 	{
 		static $magic_quotes_gpc = NULL;
 
-		if ($magic_quotes_gpc === NULL)
-			$magic_quotes_gpc = (version_compare(PHP_VERSION, '5.4', '<') && get_magic_quotes_gpc());
+		if ($magic_quotes_gpc === NULL) {
+					$magic_quotes_gpc = (version_compare(PHP_VERSION, '5.4', '<') && get_magic_quotes_gpc());
+		}
 
 		if (is_array($args)) {
 			return array_map(array(& $this, 'input_filter'), $args);

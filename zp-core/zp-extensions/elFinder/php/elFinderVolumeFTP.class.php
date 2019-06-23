@@ -481,7 +481,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
 			$info[4] = 0;
 			$info[0] = 'drwxr-xr-x';
 		} else {
-			$info[4] = (int)$size;
+			$info[4] = (int) $size;
 			$info[0] = '-rw-r--r--';
 		}
 		return $info;
@@ -699,7 +699,7 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
 			$initial_slashes = 2;
 		}
 
-		$initial_slashes = (int)$initial_slashes;
+		$initial_slashes = (int) $initial_slashes;
 
 		$comps = explode($this->separator, $path);
 		$new_comps = array();
@@ -925,8 +925,8 @@ class elFinderVolumeFTP extends elFinderVolumeDriver
 
 					case 'perm':
 						$val = strtolower($val);
-						$stat['read'] = (int)preg_match('/e|l|r/', $val);
-						$stat['write'] = (int)preg_match('/w|m|c/', $val);
+						$stat['read'] = (int) preg_match('/e|l|r/', $val);
+						$stat['write'] = (int) preg_match('/w|m|c/', $val);
 						if (!preg_match('/f|d/', $val)) {
 							$stat['locked'] = 1;
 						}

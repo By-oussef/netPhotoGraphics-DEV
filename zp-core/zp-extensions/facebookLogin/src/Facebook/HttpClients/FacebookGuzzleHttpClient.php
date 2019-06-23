@@ -112,7 +112,7 @@ class FacebookGuzzleHttpClient implements FacebookHttpable {
 
 	$request = self::$guzzleClient->createRequest($method, $url, $options);
 
-	foreach($this->requestHeaders as $k => $v) {
+	foreach ($this->requestHeaders as $k => $v) {
 	  $request->setHeader($k, $v);
 	}
 

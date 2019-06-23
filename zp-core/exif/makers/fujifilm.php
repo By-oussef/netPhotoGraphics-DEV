@@ -280,15 +280,17 @@ function parseFujifilm($block, &$result) {
 
 	$num = bin2hex(substr($block, $place, 4));
 	$place += 4;
-	if ($intel == 1)
-		$num = intel2Moto($num);
+	if ($intel == 1) {
+			$num = intel2Moto($num);
+	}
 	$result['SubIFD']['MakerNote']['Offset'] = hexdec($num);
 
 	//Get number of tags (2 bytes)
 	$num = bin2hex(substr($block, $place, 2));
 	$place += 2;
-	if ($intel == 1)
-		$num = intel2Moto($num);
+	if ($intel == 1) {
+			$num = intel2Moto($num);
+	}
 	$result['SubIFD']['MakerNote']['MakerNoteNumTags'] = hexdec($num);
 
 	//loop thru all tags  Each field is 12 bytes
@@ -297,22 +299,25 @@ function parseFujifilm($block, &$result) {
 		//2 byte tag
 		$tag = bin2hex(substr($block, $place, 2));
 		$place += 2;
-		if ($intel == 1)
-			$tag = intel2Moto($tag);
+		if ($intel == 1) {
+					$tag = intel2Moto($tag);
+		}
 		$tag_name = lookup_Fujifilm_tag($tag);
 
 		//2 byte type
 		$type = bin2hex(substr($block, $place, 2));
 		$place += 2;
-		if ($intel == 1)
-			$type = intel2Moto($type);
+		if ($intel == 1) {
+					$type = intel2Moto($type);
+		}
 		lookup_type($type, $size);
 
 		//4 byte count of number of data units
 		$count = bin2hex(substr($block, $place, 4));
 		$place += 4;
-		if ($intel == 1)
-			$count = intel2Moto($count);
+		if ($intel == 1) {
+					$count = intel2Moto($count);
+		}
 		$bytesofdata = validSize($size * hexdec($count));
 
 		//4 byte value of data or pointer to data

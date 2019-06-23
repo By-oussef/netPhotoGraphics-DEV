@@ -1222,7 +1222,9 @@ abstract class elFinderVolumeDriver
 
 		// This get's triggered if $this->root == '/' and alias is empty.
 		// Maybe modify _basename instead?
-		if ($this->rootName === '') $this->rootName = $this->separator;
+		if ($this->rootName === '') {
+			$this->rootName = $this->separator;
+		}
 
 		$root = $this->stat($this->root);
 
@@ -1261,8 +1263,8 @@ abstract class elFinderVolumeDriver
 				'read' => false
 			));
 		}
-		$this->treeDeep = $this->options['treeDeep'] > 0 ? (int)$this->options['treeDeep'] : 1;
-		$this->tmbSize = $this->options['tmbSize'] > 0 ? (int)$this->options['tmbSize'] : 48;
+		$this->treeDeep = $this->options['treeDeep'] > 0 ? (int) $this->options['treeDeep'] : 1;
+		$this->tmbSize = $this->options['tmbSize'] > 0 ? (int) $this->options['tmbSize'] : 48;
 		$this->URL = $this->options['URL'];
 		if ($this->URL && preg_match("|[^/?&=]$|", $this->URL)) {
 			$this->URL .= '/';
@@ -1274,7 +1276,7 @@ abstract class elFinderVolumeDriver
 		} else if ($dirUrlOwn === 'hide') {
 			$this->options['dirUrlOwn'] = 'hide';
 		} else {
-			$this->options['dirUrlOwn'] = (bool)$this->options['dirUrlOwn'];
+			$this->options['dirUrlOwn'] = (bool) $this->options['dirUrlOwn'];
 		}
 
 		$this->tmbURL = !empty($this->options['tmbURL']) ? $this->options['tmbURL'] : '';
@@ -1635,8 +1637,8 @@ abstract class elFinderVolumeDriver
 			'syncMinMs' => intval($this->options['syncMinMs']),
 			'i18nFolderName' => intval($this->options['i18nFolderName']),
 			'tmbCrop' => intval($this->options['tmbCrop']),
-			'substituteImg' => (bool)$this->options['substituteImg'],
-			'onetimeUrl' => (bool)$this->options['onetimeUrl'],
+			'substituteImg' => (bool) $this->options['substituteImg'],
+			'onetimeUrl' => (bool) $this->options['onetimeUrl'],
 		);
 		if (!empty($this->options['trashHash'])) {
 			$opts['trashHash'] = $this->options['trashHash'];
@@ -2355,7 +2357,7 @@ abstract class elFinderVolumeDriver
 			return $this->setError(elFinder::ERROR_UPLOAD_FILE_MIME, '(' . $mime . ')');
 		}
 
-		$tmpsize = (int)sprintf('%u', filesize($tmpname));
+		$tmpsize = (int) sprintf('%u', filesize($tmpname));
 		if ($this->uploadMaxSize > 0 && $tmpsize > $this->uploadMaxSize) {
 			return $this->setError(elFinder::ERROR_UPLOAD_FILE_SIZE);
 		}
@@ -2756,7 +2758,7 @@ abstract class elFinderVolumeDriver
 			return $this->setError(elFinder::ERROR_PERM_DENIED);
 		}
 		$this->clearcache();
-		$this->extractToNewdir = is_null($makedir) ? 'auto' : (bool)$makedir;
+		$this->extractToNewdir = is_null($makedir) ? 'auto' : (bool) $makedir;
 
 		if ($path = $this->convEncOut($this->_extract($this->convEncIn($path), $archiver))) {
 			if (is_array($path)) {
@@ -3124,7 +3126,7 @@ abstract class elFinderVolumeDriver
 	 **/
 	public function subdirs($hash)
 	{
-		return (bool)$this->subdirsCE($this->decode($hash));
+		return (bool) $this->subdirsCE($this->decode($hash));
 	}
 
 	/**
@@ -3228,7 +3230,7 @@ abstract class elFinderVolumeDriver
 	{
 		if ($this->tmpLinkPath) {
 			if (!$name) {
-				$name = 'temp_' . md5($_SERVER['REMOTE_ADDR'] . (string)microtime(true));
+				$name = 'temp_' . md5($_SERVER['REMOTE_ADDR'] . (string) microtime(true));
 			} else if (substr($name, 0, 5) !== 'temp_') {
 				$name = 'temp_' . $name;
 			}
@@ -3377,7 +3379,7 @@ abstract class elFinderVolumeDriver
 
 	public function setUploadOverwrite($var)
 	{
-		$this->uploadOverwrite = (bool)$var;
+		$this->uploadOverwrite = (bool) $var;
 	}
 
 	/**
@@ -3427,22 +3429,22 @@ abstract class elFinderVolumeDriver
 				if (empty($options['degree'])) {
 					return true;
 				}
-				return (bool)$this->imgRotate($src, $options['degree'], $options['bgColorFb'], null, $options['jpgQuality']);
+				return (bool) $this->imgRotate($src, $options['degree'], $options['bgColorFb'], null, $options['jpgQuality']);
 
 			case 'resize':
-				return (bool)$this->imgResize($src, $options['width'], $options['height'], false, true, null, $options['jpgQuality'], $options);
+				return (bool) $this->imgResize($src, $options['width'], $options['height'], false, true, null, $options['jpgQuality'], $options);
 
 			case 'propresize':
-				return (bool)$this->imgResize($src, $options['width'], $options['height'], true, true, null, $options['jpgQuality'], $options);
+				return (bool) $this->imgResize($src, $options['width'], $options['height'], true, true, null, $options['jpgQuality'], $options);
 
 			case 'crop':
 				if (isset($options['x']) && isset($options['y'])) {
-					return (bool)$this->imgCrop($src, $options['width'], $options['height'], $options['x'], $options['y'], null, $options['jpgQuality']);
+					return (bool) $this->imgCrop($src, $options['width'], $options['height'], $options['x'], $options['y'], null, $options['jpgQuality']);
 				}
 				break;
 
 			case 'fitsquare':
-				return (bool)$this->imgSquareFit($src, $options['width'], $options['height'], 'center', 'middle', $options['bgcolor'], null, $options['jpgQuality']);
+				return (bool) $this->imgSquareFit($src, $options['width'], $options['height'], 'center', 'middle', $options['bgcolor'], null, $options['jpgQuality']);
 
 		}
 		return false;
@@ -3707,7 +3709,7 @@ abstract class elFinderVolumeDriver
 				return $this->sessionCache['subdirs'][$path];
 			}
 		}
-		$hasdir = (bool)((!$this->encoding) ? $this->_subdirs($path) : $this->convEncOut($this->_subdirs($this->convEncIn($path))));
+		$hasdir = (bool) ((!$this->encoding) ? $this->_subdirs($path) : $this->convEncOut($this->_subdirs($this->convEncIn($path))));
 		$this->updateSubdirsCache($path, $hasdir);
 		return $hasdir;
 	}
@@ -3801,7 +3803,7 @@ abstract class elFinderVolumeDriver
 				$path = str_replace($this->separatorForHash, $this->separator, $path);
 			}
 			// append ROOT to path after it was cut in encode
-			return $this->abspathCE($path);//$this->root.($path === $this->separator ? '' : $this->separator.$path);
+			return $this->abspathCE($path); //$this->root.($path === $this->separator ? '' : $this->separator.$path);
 		}
 		return '';
 	}
@@ -3901,7 +3903,7 @@ abstract class elFinderVolumeDriver
 		}
 
 		if ($checkNum && preg_match('/(' . preg_quote($suffix, '/') . ')(\d*)$/i', $name, $m)) {
-			$i = (int)$m[2];
+			$i = (int) $m[2];
 			$name = substr($name, 0, strlen($name) - strlen($m[2]));
 		} else {
 			$i = $start;
@@ -4509,7 +4511,7 @@ abstract class elFinderVolumeDriver
 					if (isset($stat['dirs'])) {
 						if ($stat['dirs']) {
 							if ($stat['dirs'] == -1) {
-								$stat['dirs'] = ($this->sessionCaching['subdirs'] && isset($this->sessionCache['subdirs'][$path])) ? (int)$this->sessionCache['subdirs'][$path] : -1;
+								$stat['dirs'] = ($this->sessionCaching['subdirs'] && isset($this->sessionCache['subdirs'][$path])) ? (int) $this->sessionCache['subdirs'][$path] : -1;
 							} else {
 								$stat['dirs'] = 1;
 							}
@@ -5216,7 +5218,7 @@ abstract class elFinderVolumeDriver
 			}
 			$volume->close($fp, $src);
 
-			$this->added[] = $this->stat($path);;
+			$this->added[] = $this->stat($path); ;
 		}
 
 		return $path;
@@ -6164,8 +6166,8 @@ abstract class elFinderVolumeDriver
 		}
 
 		$descriptorspec = array(
-			0 => array("pipe", "r"),  // stdin
-			1 => array("pipe", "w"),  // stdout
+			0 => array("pipe", "r"), // stdin
+			1 => array("pipe", "w"), // stdout
 			2 => array("pipe", "w")   // stderr
 		);
 
@@ -6647,7 +6649,7 @@ abstract class elFinderVolumeDriver
 	{
 		$separator = $this->separator;
 		$systemroot = $this->systemRoot;
-		$base = (string)$base;
+		$base = (string) $base;
 
 		if ($base[0] === $separator && substr($base, 0, strlen($systemroot)) !== $systemroot) {
 			$base = $systemroot . substr($base, 1);
@@ -6657,7 +6659,9 @@ abstract class elFinderVolumeDriver
 		}
 
 		// 'Here'
-		if ($path === '' || $path === '.' . $separator) return $base;
+		if ($path === '' || $path === '.' . $separator) {
+			return $base;
+		}
 
 		$sepquoted = preg_quote($separator, '#');
 
@@ -6866,7 +6870,7 @@ abstract class elFinderVolumeDriver
 						}
 					}
 				} else {
-					$res['totalSize'] += (int)sprintf('%u', filesize($p));
+					$res['totalSize'] += (int) sprintf('%u', filesize($p));
 				}
 			}
 			$res['rmNames'] = array_unique($res['rmNames']);
@@ -6889,7 +6893,7 @@ abstract class elFinderVolumeDriver
 				$res['mimes'][] = $path;
 				$res['rmNames'][] = $name;
 			} else {
-				$res['totalSize'] += (int)sprintf('%u', filesize($path));
+				$res['totalSize'] += (int) sprintf('%u', filesize($path));
 			}
 		}
 
@@ -7011,7 +7015,7 @@ abstract class elFinderVolumeDriver
 				$res |= self::localMoveRecursive($src . DIRECTORY_SEPARATOR . $item, $target . DIRECTORY_SEPARATOR . $item, $overWrite, $copyJoin);
 			}
 		}
-		return (bool)$res;
+		return (bool) $res;
 	}
 
 	/**

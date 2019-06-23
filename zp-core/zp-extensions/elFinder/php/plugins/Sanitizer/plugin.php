@@ -56,9 +56,9 @@ class elFinderPluginSanitizer extends elFinderPlugin
 	public function __construct($opts)
 	{
 		$defaults = array(
-			'enable' => true,  // For control by volume driver
+			'enable' => true, // For control by volume driver
 			'targets' => array('\\', '/', ':', '*', '?', '"', '<', '>', '|'), // target chars
-			'replace' => '_',   // replace to this
+			'replace' => '_', // replace to this
 			'callBack' => null   // Or callable sanitize function
 		);
 		$this->opts = array_merge($defaults, $opts);

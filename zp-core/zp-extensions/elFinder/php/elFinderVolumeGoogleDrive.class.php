@@ -261,7 +261,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
 			$stat['size'] = 0;
 		} else {
 			$stat['mime'] = $raw['mimeType'] == 'image/bmp' ? 'image/x-ms-bmp' : $raw['mimeType'];
-			$stat['size'] = (int)$raw['size'];
+			$stat['size'] = (int) $raw['size'];
 			if ($size = $raw->getImageMediaMetadata()) {
 				$stat['width'] = $size['width'];
 				$stat['height'] = $size['height'];
@@ -1394,7 +1394,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
 	 **/
 	protected function _dirname($path)
 	{
-		list(, , $parent) = $this->_gd_splitPath($path);
+		list(,, $parent) = $this->_gd_splitPath($path);
 
 		return $this->_normpath($parent);
 	}
@@ -1697,7 +1697,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
 	protected function _mkdir($path, $name)
 	{
 		$path = $this->_joinPath($path, $name);
-		list($parentId, , $parent) = $this->_gd_splitPath($path);
+		list($parentId,, $parent) = $this->_gd_splitPath($path);
 
 		try {
 			$file = new \Google_Service_Drive_DriveFile();
@@ -2011,7 +2011,7 @@ class elFinderVolumeGoogleDrive extends elFinderVolumeDriver
 			$contents = $this->service->files->get($itemId, [
 				'alt' => 'media',
 			]);
-			$contents = (string)$contents->getBody();
+			$contents = (string) $contents->getBody();
 		} catch (Exception $e) {
 			return $this->setError('GoogleDrive error: ' . $e->getMessage());
 		}

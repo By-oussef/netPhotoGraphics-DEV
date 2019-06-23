@@ -33,8 +33,10 @@
 		?>
 		<div class="menu border colour">
 			<?php
-			if (getOption('zenfluid_menutitles'))
-				echo '<div class="menutitle">' . gettext('Gallery') . '</div>'; echo "\n";
+			if (getOption('zenfluid_menutitles')) {
+							echo '<div class="menutitle">' . gettext('Gallery') . '</div>';
+			}
+			echo "\n";
 			if (extensionEnabled('print_album_menu')) {
 				printAlbumMenu("list", NULL, "", "menu-active", "submenu", "menu-active", $homeLink);
 			} else {
@@ -47,7 +49,10 @@
 			if (hasPages()) {
 				?>
 				<div class="menu border colour">
-					<?php if (getOption('zenfluid_menutitles')) echo '<div class="menutitle">' . gettext('Pages') . '</div>'; echo "\n"; ?>
+					<?php if (getOption('zenfluid_menutitles')) {
+	echo '<div class="menutitle">' . gettext('Pages') . '</div>';
+}
+echo "\n"; ?>
 					<?php printPageMenu("list", "", "menu-active", "submenu", "menu-active"); ?>
 				</div>
 				<?php
@@ -56,8 +61,10 @@
 				?>
 				<div class="menu border colour">
 					<?php
-					if (getOption('zenfluid_menutitles'))
-						echo '<div class="menutitle">' . NEWS_LABEL . '</div>'; echo "\n";
+					if (getOption('zenfluid_menutitles')) {
+											echo '<div class="menutitle">' . NEWS_LABEL . '</div>';
+					}
+					echo "\n";
 					printAllNewsCategories(gettext("All"), false, "", "menu-active", true, "submenu", "menu-active");
 					?>
 				</div>
@@ -67,11 +74,14 @@
 				?>
 				<div class="menu border colour">
 					<?php
-					if (getOption('zenfluid_menutitles'))
-						echo '<div class="menutitle">' . gettext('RSS Feeds') . '</div>'; echo "\n";
+					if (getOption('zenfluid_menutitles')) {
+											echo '<div class="menutitle">' . gettext('RSS Feeds') . '</div>';
+					}
+					echo "\n";
 					printRSSLink('Gallery', '<ul>', gettext('Gallery'), '</ul>');
-					if (hasNews())
-						printRSSLink('News', '<ul>', NEWS_LABEL, '</ul>');
+					if (hasNews()) {
+											printRSSLink('News', '<ul>', NEWS_LABEL, '</ul>');
+					}
 					?>
 				</div>
 				<?php
