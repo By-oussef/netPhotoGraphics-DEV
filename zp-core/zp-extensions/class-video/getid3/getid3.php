@@ -1381,8 +1381,8 @@ class getID3
 
 				if (!empty($VorbisCommentError)) {
 
-					$this->info['warning'][]         = 'Failed making system call to vorbiscomment(.exe) - ' . $algorithm . '_data will be incorrect. If vorbiscomment is unavailable, please download from http://www.vorbis.com/download.psp and put in the getID3() directory. Error returned: ' . $VorbisCommentError;
-					$this->info[$algorithm . '_data']  = false;
+					$this->info['warning'][] = 'Failed making system call to vorbiscomment(.exe) - ' . $algorithm . '_data will be incorrect. If vorbiscomment is unavailable, please download from http://www.vorbis.com/download.psp and put in the getID3() directory. Error returned: ' . $VorbisCommentError;
+					$this->info[$algorithm . '_data'] = false;
 
 				} else {
 
@@ -1619,17 +1619,17 @@ abstract class getid3_handler {
 	/**
 	 * @var getID3
 	 */
-	protected $getid3;                       // pointer
+	protected $getid3; // pointer
 
 	protected $data_string_flag     = false; // analyzing filepointer or string
-	protected $data_string          = '';    // string to analyze
-	protected $data_string_position = 0;     // seek position in string
-	protected $data_string_length   = 0;     // string length
+	protected $data_string          = ''; // string to analyze
+	protected $data_string_position = 0; // seek position in string
+	protected $data_string_length   = 0; // string length
 
 	private $dependency_to = null;
 
 
-	public function __construct(getID3 $getid3, $call_module=null) {
+	public function __construct(getID3 $getid3, $call_module = null) {
 		$this->getid3 = $getid3;
 
 		if ($call_module) {
